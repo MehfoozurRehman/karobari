@@ -446,7 +446,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-zinc-900 bg-zinc-950 py-16 text-sm text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
-          <p>© 2026 Karobari SaaS Platform. Designed for micro-retailers in Pakistan.</p>
+          <p>© 2026 Karobari. Designed for micro-retailers in Pakistan.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-zinc-300">Privacy Policy</a>
             <a href="#" className="hover:text-zinc-300">Terms of Service</a>
