@@ -413,7 +413,7 @@ export default function Home() {
             <div className="space-y-2">
               <h4 className="text-base font-bold text-white">Are there any hidden costs?</h4>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                No hidden charges. We use incoming WhatsApp message windows to interact for free. Outbound templates are only needed for alerts outside the 24-hour window, which can be configured optionally later.
+                Absolutely none. What you see is what you pay: your base Rs. 300 monthly rate and the 2% commission per completed order. We believe in complete transparency to help you build and scale your brand without surprises.
               </p>
             </div>
           </div>
