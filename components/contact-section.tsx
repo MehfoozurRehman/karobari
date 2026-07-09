@@ -48,7 +48,6 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-16 border-b border-zinc-900/60 bg-zinc-950 relative">
-      {/* Subtle Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

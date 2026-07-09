@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Check, Send, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { SharedHeader, SharedFooter } from "@/components/layout-wrapper";
 
 export default function ContactPage() {
   const submitQuery = useMutation(api.queries.submitQuery);
@@ -49,7 +51,6 @@ export default function ContactPage() {
     <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-emerald-500 selection:text-black relative">
       <SharedHeader />
       
-      {/* Decorative Blur */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <main className="flex-grow flex items-center">
