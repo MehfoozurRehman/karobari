@@ -9,6 +9,7 @@
  */
 
 import type * as http from "../http.js";
+import type * as onboarding from "../onboarding.js";
 import type * as queries from "../queries.js";
 import type * as whatsapp from "../whatsapp.js";
 
@@ -20,6 +21,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   http: typeof http;
+  onboarding: typeof onboarding;
   queries: typeof queries;
   whatsapp: typeof whatsapp;
 }>;

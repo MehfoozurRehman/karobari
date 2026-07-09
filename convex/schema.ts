@@ -35,4 +35,24 @@ export default defineSchema({
   })
   .index("by_slug", ["slug"])
   .index("by_ownerPhone", ["ownerPhone"]),
+
+  onboardingSessions: defineTable({
+    phone: v.string(),
+    step: v.union(
+      v.literal("idle"),
+      v.literal("awaiting_name"),
+      v.literal("awaiting_industry"),
+      v.literal("awaiting_city"),
+      v.literal("awaiting_payment_gateway"),
+      v.literal("awaiting_payment_number"),
+      v.literal("awaiting_payment_title")
+    ),
+    businessName: v.optional(v.string()),
+    industry: v.optional(v.string()),
+    city: v.optional(v.string()),
+    paymentGatewayName: v.optional(v.string()),
+    paymentGatewayNumber: v.optional(v.string()),
+    paymentGatewayTitle: v.optional(v.string()),
+    updatedAt: v.number(),
+  }).index("by_phone", ["phone"]),
 });
