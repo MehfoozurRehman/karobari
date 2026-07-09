@@ -406,7 +406,7 @@ export default function Home() {
             <div className="space-y-2">
               <h4 className="text-base font-bold text-white">What about custom domain configurations?</h4>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                You can insert any domain name (like `www.yoursalon.com`) in your admin dashboard. We make API calls to register and link your storefront page dynamically without any manual server configuration needed.
+                Simply enter your domain name in the dashboard. We will provide you with the DNS values (A Record and CNAME) to add in your domain registrar panel. Once configured, your domain will link to your storefront automatically.
               </p>
             </div>
 
