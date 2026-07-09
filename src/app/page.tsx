@@ -137,7 +137,7 @@ export default function Home() {
                   <Badge className="bg-emerald-500/10 text-emerald-400 border-none text-[10px] py-0.5 px-2">Roman Urdu Agent</Badge>
                 </div>
 
-                <div className="space-y-4 text-xs max-h-[300px] overflow-y-auto pr-1">
+                <div className="space-y-4 text-xs max-h-[300px] overflow-y-auto pr-1 custom-scrollbar">
                   <div className="flex justify-end">
                     <div className="bg-emerald-950 text-emerald-100 rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[85%] shadow">
                       <p className="font-semibold text-emerald-300 text-[10px] mb-1">Customer (WhatsApp)</p>
