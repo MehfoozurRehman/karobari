@@ -114,7 +114,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-4 text-xs font-semibold text-zinc-500 pt-4">
-            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> First 50 Orders Free</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> First 20 Orders Free</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Pay via EasyPaisa / JazzCash</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> No Technical Knowledge Required</span>
           </div>
@@ -346,7 +346,7 @@ export default function Home() {
                     <CheckCircle2 className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">50 Free Orders</h4>
+                    <h4 className="text-sm font-bold text-white">20 Free Orders</h4>
                     <p className="text-xs text-zinc-400">Setup your website and test all integrations at zero cost.</p>
                   </div>
                 </div>
@@ -367,7 +367,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-white">Accumulated Ledger</h4>
-                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa, JazzCash, or Bank Transfer (COD is for storefront customers only).</p>
+                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa, JazzCash, or Bank Transfer.</p>
                   </div>
                 </div>
               </div>

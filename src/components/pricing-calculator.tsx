@@ -7,7 +7,7 @@ export default function PricingCalculator() {
   const [orders, setOrders] = useState(150);
 
   const totalSalesVal = orders * 1200; // Average ticket size of Rs. 1200
-  const freeQuota = 50;
+  const freeQuota = 20;
   const billableOrders = Math.max(0, orders - freeQuota);
   const platformFee = billableOrders * 1200 * 0.02;
 
@@ -59,7 +59,7 @@ export default function PricingCalculator() {
 
         <div className="text-xs text-zinc-500 space-y-1">
           <p className="flex justify-between">
-            <span>First 50 Orders:</span>
+            <span>First 20 Orders:</span>
             <span className="text-emerald-400 font-medium">Free (Rs. 0 Commission)</span>
           </p>
           <p className="flex justify-between">
