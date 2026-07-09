@@ -455,7 +455,6 @@ export default function Home() {
           <div className="flex gap-8">
             <a href="/privacy" className="hover:text-zinc-300">Privacy Policy</a>
             <a href="/terms" className="hover:text-zinc-300">Terms of Service</a>
-            <a href="#contact" className="hover:text-zinc-300">Contact Support</a>
           </div>
         </div>
       </footer>

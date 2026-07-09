@@ -57,7 +57,6 @@ export function SharedFooter() {
         <div className="flex gap-8">
           <Link href="/privacy" className="hover:text-zinc-300">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-zinc-300">Terms of Service</Link>
-          <Link href="/#contact" className="hover:text-zinc-300">Contact Support</Link>
         </div>
       </div>
     </footer>
