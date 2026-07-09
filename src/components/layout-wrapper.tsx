@@ -21,6 +21,7 @@ export function SharedHeader() {
           <Link href="/#whatsapp" className="hover:text-emerald-400 transition-colors">WhatsApp Agent</Link>
           <Link href="/#pricing" className="hover:text-emerald-400 transition-colors">Pricing</Link>
           <Link href="/#faq" className="hover:text-emerald-400 transition-colors">FAQ</Link>
+          <Link href="/#contact" className="hover:text-emerald-400 transition-colors">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -56,7 +57,7 @@ export function SharedFooter() {
         <div className="flex gap-8">
           <Link href="/privacy" className="hover:text-zinc-300">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-zinc-300">Terms of Service</Link>
-          <Link href="/contact" className="hover:text-zinc-300">Contact Support</Link>
+          <Link href="/#contact" className="hover:text-zinc-300">Contact Support</Link>
         </div>
       </div>
     </footer>

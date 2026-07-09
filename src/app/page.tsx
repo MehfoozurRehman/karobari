@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import PricingCalculator from "@/components/pricing-calculator";
+import ContactSection from "@/components/contact-section";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -51,6 +52,7 @@ export default function Home() {
             <a href="#whatsapp" className="hover:text-emerald-400 transition-colors">WhatsApp Agent</a>
             <a href="#pricing" className="hover:text-emerald-400 transition-colors">Pricing</a>
             <a href="#faq" className="hover:text-emerald-400 transition-colors">FAQ</a>
+            <a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a>
           </nav>
 
           <div className="flex items-center gap-4">
@@ -443,6 +445,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Interactive Contact support Section */}
+      <ContactSection />
+
       {/* Footer */}
       <footer className="border-t border-zinc-900 bg-zinc-950 py-16 text-sm text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
@@ -450,7 +455,7 @@ export default function Home() {
           <div className="flex gap-8">
             <a href="/privacy" className="hover:text-zinc-300">Privacy Policy</a>
             <a href="/terms" className="hover:text-zinc-300">Terms of Service</a>
-            <a href="/contact" className="hover:text-zinc-300">Contact Support</a>
+            <a href="#contact" className="hover:text-zinc-300">Contact Support</a>
           </div>
         </div>
       </footer>
