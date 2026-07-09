@@ -382,7 +382,7 @@ export default function Home() {
 
       {/* Local FAQ */}
       <section id="faq" className="py-16 border-b border-zinc-900/60">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
           <div className="space-y-4">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Frequently Asked Questions</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Everything You Need To Know</h2>
