@@ -9,7 +9,9 @@ export default function PricingCalculator() {
   const totalSalesVal = orders * 1200; // Average ticket size of Rs. 1200
   const freeQuota = 20;
   const billableOrders = Math.max(0, orders - freeQuota);
-  const platformFee = billableOrders * 1200 * 0.02;
+  const baseFee = billableOrders > 0 ? 300 : 0;
+  const variableFee = billableOrders * 1200 * 0.02;
+  const platformFee = baseFee + variableFee;
 
   return (
     <Card className="w-full border-zinc-800 bg-zinc-900/60 backdrop-blur-md">
@@ -52,7 +54,7 @@ export default function PricingCalculator() {
             <p className="text-xl font-bold text-zinc-200 mt-1">Rs. {totalSalesVal.toLocaleString()}</p>
           </div>
           <div className="p-4 rounded-xl border border-emerald-500/10 bg-emerald-500/5">
-            <p className="text-xs text-emerald-500/80 uppercase tracking-wider">Karobari 2% Fee</p>
+            <p className="text-xs text-emerald-500/80 uppercase tracking-wider">Total Platform Fee</p>
             <p className="text-2xl font-black text-emerald-400 mt-1">Rs. {platformFee.toLocaleString()}</p>
           </div>
         </div>
@@ -61,6 +63,14 @@ export default function PricingCalculator() {
           <p className="flex justify-between">
             <span>First 20 Orders:</span>
             <span className="text-emerald-400 font-medium">Free (Rs. 0 Commission)</span>
+          </p>
+          <p className="flex justify-between">
+            <span>Base Platform Fee:</span>
+            <span>Rs. {baseFee} / mo</span>
+          </p>
+          <p className="flex justify-between">
+            <span>Variable Commission (2%):</span>
+            <span>Rs. {variableFee.toLocaleString()}</span>
           </p>
           <p className="flex justify-between">
             <span>Billable Orders:</span>

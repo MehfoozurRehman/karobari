@@ -334,10 +334,10 @@ export default function Home() {
             <div className="lg:col-span-5 space-y-6 text-left">
               <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">No High Upfront Cost</Badge>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.1]">
-                Zero Subscriptions. We Only Earn When You Make Sales.
+                Simple Pricing. Only Pay Once You Grow.
               </h2>
               <p className="text-zinc-400 text-base leading-relaxed">
-                Forget about expensive upfront bills. Karobari aligns entirely with your business success.
+                Forget about heavy setups or subscriptions. Karobari aligns entirely with your business success.
               </p>
               
               <div className="space-y-4 pt-2">
@@ -356,8 +356,8 @@ export default function Home() {
                     <CheckCircle2 className="h-4 w-4" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">Flat 2% Per Order Fee</h4>
-                    <p className="text-xs text-zinc-400">Pay a minimal 2% commission only on successfully completed orders.</p>
+                    <h4 className="text-sm font-bold text-white">Rs. 300 / Month + 2% per order</h4>
+                    <p className="text-xs text-zinc-400">Flat base rate of Rs. 300/mo and a minimal 2% commission only on billable orders after the quota.</p>
                   </div>
                 </div>
 
@@ -367,7 +367,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-white">Accumulated Ledger</h4>
-                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa, JazzCash, or Bank Transfer.</p>
+                    <p className="text-xs text-zinc-400">Pay your accumulated base fee and order commission balance monthly via EasyPaisa, JazzCash, or Bank Transfer.</p>
                   </div>
                 </div>
               </div>
