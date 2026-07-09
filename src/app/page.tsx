@@ -358,7 +358,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-white">Accumulated Ledger</h4>
-                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa or JazzCash.</p>
+                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa, JazzCash, or Bank Transfer (COD is for storefront customers only).</p>
                   </div>
                 </div>
               </div>
