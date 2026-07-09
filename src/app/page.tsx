@@ -92,7 +92,7 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1]">
-            Apna Karobar Online Le Kar Ayein —{" "}
+            Apna Karobar Online Le Kar Ayein{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">
               Sirf Aik WhatsApp Message Se!
             </span>
