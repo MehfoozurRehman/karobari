@@ -448,9 +448,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
           <p>© 2026 Karobari. Designed for micro-retailers in Pakistan.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-zinc-300">Privacy Policy</a>
-            <a href="#" className="hover:text-zinc-300">Terms of Service</a>
-            <a href="#" className="hover:text-zinc-300">Contact Support</a>
+            <a href="/privacy" className="hover:text-zinc-300">Privacy Policy</a>
+            <a href="/terms" className="hover:text-zinc-300">Terms of Service</a>
+            <a href="/contact" className="hover:text-zinc-300">Contact Support</a>
           </div>
         </div>
       </footer>
