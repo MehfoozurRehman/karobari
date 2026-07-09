@@ -39,9 +39,13 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-zinc-900/60 bg-zinc-950/70 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-              <span className="text-black font-black text-xl">K</span>
-            </div>
+            <Image
+              src="/karobari_logo.png"
+              alt="Karobari Logo"
+              width={40}
+              height={40}
+              className="rounded-xl shadow-lg shadow-emerald-500/10"
+            />
             <span className="text-2xl font-black tracking-tight text-white">
               Karobari<span className="text-emerald-400 font-black">.</span>
             </span>
