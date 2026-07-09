@@ -120,7 +120,7 @@ export default function Home() {
           </div>
 
           {/* Interactive Dual-Panel Mockup */}
-          <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto text-left">
+          <div id="whatsapp" className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto text-left scroll-mt-24">
             {/* WhatsApp AI Mockup */}
             <div className="lg:col-span-5 border border-zinc-800 bg-zinc-900/40 rounded-3xl p-3 sm:p-5 backdrop-blur-md shadow-2xl flex flex-col justify-between">
               <div>
