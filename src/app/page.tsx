@@ -245,8 +245,8 @@ export default function Home() {
       </section>
 
       {/* Feature Grids */}
-      <section id="features" className="py-28 border-b border-zinc-900/60 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
+      <section id="features" className="py-16 border-b border-zinc-900/60 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 text-center">
           <div className="space-y-4">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Comprehensive Capabilities</Badge>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
@@ -328,7 +328,7 @@ export default function Home() {
       </section>
 
       {/* Interactive Fee Section */}
-      <section id="pricing" className="py-28 border-b border-zinc-900/60 bg-zinc-950 relative">
+      <section id="pricing" className="py-16 border-b border-zinc-900/60 bg-zinc-950 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5 space-y-6 text-left">
@@ -381,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* Local FAQ */}
-      <section id="faq" className="py-24 border-b border-zinc-900/60">
+      <section id="faq" className="py-16 border-b border-zinc-900/60">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
           <div className="space-y-4">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Frequently Asked Questions</Badge>
@@ -421,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
+      <section className="py-16 bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-8 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
             Apni Online Dukaan Aaj Hi Shuru Karen!
