@@ -14,7 +14,9 @@ export function SharedHeader() {
             alt="Karobari Logo"
             width={40}
             height={40}
-            className="rounded-xl shadow-lg shadow-emerald-500/10"
+            quality={100}
+            priority
+            className="rounded-xl shadow-lg shadow-emerald-500/10 object-contain"
           />
           <span className="text-2xl font-black tracking-tight text-white">
             Karobari<span className="text-emerald-400 font-black">.</span>
