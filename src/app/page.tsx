@@ -15,24 +15,38 @@ import {
   CheckCircle2,
   Users,
   Percent,
+  Sparkles,
+  Zap,
+  Layers,
+  ArrowUpRight,
+  Smartphone,
+  PhoneCall,
+  UserCheck
 } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 overflow-x-hidden selection:bg-emerald-500 selection:text-black">
-      {/* Premium Header */}
-      <header className="sticky top-0 z-50 border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div className="flex flex-col min-h-screen bg-zinc-950 text-zinc-50 overflow-x-hidden selection:bg-emerald-400 selection:text-black">
+      {/* Decorative Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#18181b_1px,transparent_1px),linear-gradient(to_bottom,#18181b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      {/* Dynamic Glowing Accents */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none animate-pulse duration-[8000ms]" />
+      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-teal-500/10 rounded-full blur-[130px] pointer-events-none animate-pulse duration-[10000ms]" />
+
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-zinc-900/60 bg-zinc-950/70 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-              <span className="text-black font-black text-lg">K</span>
+            <div className="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emerald-500 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+              <span className="text-black font-black text-xl">K</span>
             </div>
-            <span className="text-xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">
+            <span className="text-2xl font-black tracking-tight text-white">
               Karobari<span className="text-emerald-400 font-black">.</span>
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-400">
             <a href="#features" className="hover:text-emerald-400 transition-colors">Features</a>
             <a href="#whatsapp" className="hover:text-emerald-400 transition-colors">WhatsApp Agent</a>
             <a href="#pricing" className="hover:text-emerald-400 transition-colors">Pricing</a>
@@ -45,7 +59,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="ghost" className="text-zinc-300 hover:text-white border border-zinc-800 hover:bg-zinc-900">
+              <Button variant="ghost" className="text-zinc-300 hover:text-white border border-zinc-800/80 hover:bg-zinc-900 rounded-xl px-5">
                 Sign In
               </Button>
             </a>
@@ -54,8 +68,8 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-emerald-500 text-black hover:bg-emerald-400 font-medium px-4 py-2 rounded-xl">
-                Get Started Free
+              <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-bold px-6 py-5 rounded-xl shadow-lg shadow-emerald-500/10 transition-transform duration-200 active:scale-95">
+                Create Store Free
               </Button>
             </a>
           </div>
@@ -63,233 +77,348 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-20 border-b border-zinc-900 overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-teal-500/5 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Badge className="mb-6 bg-zinc-900 text-zinc-300 border-zinc-800 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
-            🚀 The Mobile-First Business Suite for Pakistan
-          </Badge>
+      <section className="relative pt-32 pb-24 border-b border-zinc-900/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="h-3.5 w-3.5" /> Made for Pakistani Small Businesses
+          </div>
           
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.15]">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1]">
             Apna Karobar Online Le Kar Ayein —{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">
               Sirf Aik WhatsApp Message Se!
             </span>
           </h1>
 
-          <p className="mt-6 text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto font-normal leading-relaxed">
-            Create a premium dynamic website for your shop, restaurant, salon, or hotel. Interact with customers automatically using a Roman Urdu AI Agent on your WhatsApp number.
+          <p className="mt-6 text-xl text-zinc-400 max-w-3xl mx-auto font-medium leading-relaxed">
+            Beautiful dynamic websites, auto-generated instantly. Interact with customers and manage incoming orders using a Roman Urdu AI Agent on your own WhatsApp number.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
             <a
               href="https://wa.me/ourNumber?text=Start%20Business"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto"
+              className="w-full"
             >
-              <Button className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-lg px-8 py-6 rounded-xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/10">
+              <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-lg py-7 rounded-xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:translate-y-[-2px]">
                 <MessageSquare className="h-5 w-5 fill-black" />
-                Start via WhatsApp
+                Setup via WhatsApp
               </Button>
             </a>
-            <a href="#pricing" className="w-full sm:w-auto">
-              <Button variant="ghost" className="w-full sm:w-auto text-zinc-300 hover:text-white border border-zinc-800 hover:bg-zinc-900 py-6 rounded-xl text-lg px-8">
-                Calculate My Fee
+            <a href="#pricing" className="w-full">
+              <Button variant="ghost" className="w-full text-zinc-300 hover:text-white border border-zinc-800 hover:bg-zinc-900/60 py-7 rounded-xl text-lg font-bold">
+                Calculate Earnings
               </Button>
             </a>
           </div>
 
-          <div className="mt-6 flex justify-center items-center gap-8 text-xs text-zinc-500">
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> First 50 orders free</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> No credit card required</span>
-            <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-500" /> Pay via EasyPaisa / COD</span>
+          <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-4 text-xs font-semibold text-zinc-500 pt-4">
+            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> First 50 Orders Free</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Pay via EasyPaisa / JazzCash / COD</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> No Technical Knowledge Required</span>
           </div>
 
-          {/* Interactive Roman Urdu WhatsApp Mockup */}
-          <div className="mt-20 max-w-4xl mx-auto border border-zinc-800 rounded-2xl bg-zinc-900/40 p-2 sm:p-4 backdrop-blur-md shadow-2xl shadow-emerald-500/5">
-            <div className="border border-zinc-800 rounded-xl bg-zinc-950 overflow-hidden">
-              {/* WhatsApp Header */}
-              <div className="bg-zinc-900 px-4 py-3 flex items-center justify-between border-b border-zinc-800">
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                    <span className="text-emerald-400 font-bold text-sm">🤖</span>
+          {/* Interactive Dual-Panel Mockup */}
+          <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-6xl mx-auto text-left">
+            {/* WhatsApp AI Mockup */}
+            <div className="lg:col-span-5 border border-zinc-800 bg-zinc-900/40 rounded-3xl p-3 sm:p-5 backdrop-blur-md shadow-2xl flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-zinc-800/80 mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-9 w-9 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                      <MessageSquare className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white leading-tight">Karobari Assistant</h4>
+                      <p className="text-[11px] text-zinc-500">Official Shop Agent</p>
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <h3 className="text-xs font-bold text-white leading-tight">Karobari AI Partner</h3>
-                    <p className="text-[10px] text-zinc-500">Online • Shop Assistant</p>
+                  <Badge className="bg-emerald-500/10 text-emerald-400 border-none text-[10px] py-0.5 px-2">Roman Urdu Agent</Badge>
+                </div>
+
+                <div className="space-y-4 text-xs max-h-[300px] overflow-y-auto pr-1">
+                  <div className="flex justify-end">
+                    <div className="bg-emerald-950 text-emerald-100 rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[85%] shadow">
+                      <p className="font-semibold text-emerald-300 text-[10px] mb-1">Customer (WhatsApp)</p>
+                      <p>Shinwari Tikka aur 2 plate Pulao ka total kitna hoga? Aur delivery time kya hai?</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-start">
+                    <div className="bg-zinc-950 text-zinc-200 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] border border-zinc-800 shadow">
+                      <p className="font-semibold text-emerald-400 text-[10px] mb-1">Karobari AI</p>
+                      <p>Khyber Shinwari me Shinwari Tikka (Rs 450) aur 2 plate Pulao (Rs 800) ka total Rs 1,250 hoga. Delivery me takreeban 30-40 mins lagenge. Kya main order confirm krdu?</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className="bg-emerald-950 text-emerald-100 rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[85%] shadow">
+                      <p>Haan krdo, address DHA Phase 5 block Z.</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-start">
+                    <div className="bg-zinc-950 text-zinc-200 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[85%] border border-zinc-800 shadow">
+                      <p className="font-semibold text-emerald-400 text-[10px] mb-1">Karobari AI</p>
+                      <p>Order #1042 confirm ho gya hai! COD select kiya gya hai. Aap is link pr check kr skte hain: <span className="text-emerald-400 underline cursor-pointer">khybershinwari.karobari.pk/track/1042</span></p>
+                    </div>
                   </div>
                 </div>
-                <Badge className="bg-emerald-500/10 text-emerald-400 border-none text-[10px]">Roman Urdu Support</Badge>
               </div>
 
-              {/* Chat Thread */}
-              <div className="p-6 space-y-4 text-sm text-left max-h-[300px] overflow-y-auto">
-                <div className="flex justify-end">
-                  <div className="bg-emerald-950 text-emerald-100 rounded-2xl rounded-tr-none px-4 py-2.5 max-w-xs shadow-md">
-                    <p>Assalam o Alaikum! Mujhe apna online hotel register krna hai. Name "Khyber Shinwari" hai.</p>
+              <div className="pt-4 mt-4 border-t border-zinc-800/80 text-[11px] text-zinc-500 text-center">
+                💬 AI acts as a 24/7 dedicated sales representative for your customers.
+              </div>
+            </div>
+
+            {/* Generated Storefront Showcase */}
+            <div className="lg:col-span-7 border border-zinc-800 bg-zinc-900/40 rounded-3xl p-5 backdrop-blur-md shadow-2xl flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-emerald-500/5 rounded-full blur-[80px]" />
+              
+              <div className="space-y-6 relative z-10">
+                <div className="flex justify-between items-center pb-4 border-b border-zinc-800/80">
+                  <div>
+                    <h4 className="text-base font-bold text-white">Dynamic Storefront Web App</h4>
+                    <p className="text-xs text-zinc-400">Beautiful templates generated matching your brand</p>
+                  </div>
+                  <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1">
+                    Live Demo <ArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+
+                <div className="border border-zinc-800 bg-zinc-950 rounded-2xl p-4 space-y-4">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-2">
+                      <div className="h-6 w-6 rounded-md bg-emerald-500 flex items-center justify-center text-black font-extrabold text-xs">K</div>
+                      <span className="text-xs font-bold text-white">Khyber Shinwari</span>
+                    </div>
+                    <Badge className="bg-emerald-500/10 text-emerald-400 border-none text-[9px]">Restaurant Theme</Badge>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 rounded-xl border border-zinc-850 bg-zinc-900/50 space-y-2">
+                      <div className="h-20 bg-zinc-800 rounded-lg relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
+                          <span className="text-[10px] font-bold text-white">Shinwari Tikka</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold text-emerald-400">Rs. 450</span>
+                        <button className="text-[9px] bg-emerald-500 text-black font-bold px-2 py-0.5 rounded">+</button>
+                      </div>
+                    </div>
+
+                    <div className="p-3 rounded-xl border border-zinc-850 bg-zinc-900/50 space-y-2">
+                      <div className="h-20 bg-zinc-800 rounded-lg relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
+                          <span className="text-[10px] font-bold text-white">Shinwari Pulao</span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs font-bold text-emerald-400">Rs. 400</span>
+                        <button className="text-[9px] bg-emerald-500 text-black font-bold px-2 py-0.5 rounded">+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex justify-between items-center border-t border-zinc-900">
+                    <span className="text-[11px] text-zinc-500">Cart Total: <strong>Rs. 850</strong></span>
+                    <button className="text-[10px] bg-emerald-500 text-zinc-950 font-extrabold px-3 py-1.5 rounded-lg">Checkout Order</button>
                   </div>
                 </div>
-                <div className="flex justify-start">
-                  <div className="bg-zinc-900 text-zinc-100 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-xs shadow-md">
-                    <p>Walaikum Assalam! Mubarak ho, Khyber Shinwari ko register kar liya hai. Apke main items aur pricing kya hain? (e.g. Karahi Rs 1200, Tikka Rs 350)</p>
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  <div className="bg-emerald-950 text-emerald-100 rounded-2xl rounded-tr-none px-4 py-2.5 max-w-xs shadow-md">
-                    <p>Shinwari Karahi Rs 1400, Lamb Tikka Rs 450, Roti Rs 30.</p>
-                  </div>
-                </div>
-                <div className="flex justify-start">
-                  <div className="bg-zinc-900 text-zinc-100 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-xs shadow-md">
-                    <p>Zabardast! Shinwari Karahi (Rs 1400), Lamb Tikka (Rs 450), aur Roti (Rs 30) list me add kr diye hain. Aapka website ready hai: <strong className="text-emerald-400 font-medium">khybershinwari.karobari.pk</strong> 🎉</p>
-                  </div>
-                </div>
+              </div>
+
+              <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 mt-6 relative z-10">
+                <span>⚡ Hyper-fast 4G Optimized Storefronts</span>
+                <span className="text-emerald-400 font-bold">100% Mobile Responsive</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Value Pillars */}
-      <section id="features" className="py-24 border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Badge className="bg-emerald-500/10 text-emerald-400 border-none mb-4">Complete Solution</Badge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Designed for Local Pakistani Businesses
-          </h2>
-          <p className="mt-4 text-lg text-zinc-400 max-w-2xl mx-auto">
-            Everything you need to run your operations under one unified platform.
-          </p>
+      {/* Feature Grids */}
+      <section id="features" className="py-28 border-b border-zinc-900/60 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
+          <div className="space-y-4">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Comprehensive Capabilities</Badge>
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+              Features Built to Deliver Credibility
+            </h2>
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto font-medium">
+              We provide professional tools to scale your business operations with zero tech stress.
+            </p>
+          </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-zinc-800 bg-zinc-900/40 backdrop-blur-md">
-              <CardContent className="p-8 text-left space-y-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                  <Globe className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white">Instant Subdomains & Custom Domains</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Get a free default `yourname.karobari.pk` subdomain or link your private domain (e.g. `.com`, `.pk`) directly with zero downtime using Vercel.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+            {/* Feature 1 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Globe className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Custom Domain Rewrite</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Connect your custom `.com` or `.pk` domain directly. We configure SSL certificates dynamically through Vercel Integration so your shop looks completely independent.
+              </p>
+            </div>
 
-            <Card className="border-zinc-800 bg-zinc-900/40 backdrop-blur-md">
-              <CardContent className="p-8 text-left space-y-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                  <MessageSquare className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white">Dual WhatsApp Agents</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Auto-response customer agent answers queries in Roman Urdu and takes orders. Private owner command bot lets you check daily sales via text.
-                </p>
-              </CardContent>
-            </Card>
+            {/* Feature 2 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Smartphone className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Interactive Owner Agent</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Control your store directly from your own WhatsApp. Text "Sales report" to see today's volume, or text "Verify order 102" to authorize bank transfers instantly.
+              </p>
+            </div>
 
-            <Card className="border-zinc-800 bg-zinc-900/40 backdrop-blur-md">
-              <CardContent className="p-8 text-left space-y-4">
-                <div className="h-12 w-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                  <DollarSign className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold text-white">Local Wallets & COD</h3>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  Accept Cash on Delivery (COD), or have customers transfer via EasyPaisa/JazzCash and verify transaction receipts in your admin panel.
-                </p>
-              </CardContent>
-            </Card>
+            {/* Feature 3 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <DollarSign className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Rider Tip & Rating Pool</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Customers can add customized tip values for delivery riders directly during checkouts. Complete customer review cards map straight back into your dashboard.
+              </p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Users className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Employee Salary Ledgers</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Log employee information, base pay parameters, and payment status ledgers internally. Keep your operational financials organized in one place.
+              </p>
+            </div>
+
+            {/* Feature 5 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Percent className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">Interactive Discounts</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Offer special discounted rates for single menu items or bulk catalog elements. System-wide marketing parameters populate onto storefront cards automatically.
+              </p>
+            </div>
+
+            {/* Feature 6 */}
+            <div className="p-8 border border-zinc-900 bg-zinc-900/20 rounded-3xl hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-300 space-y-4">
+              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Sparkles className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-white">AI Image Generator</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                No high-quality pictures for your products? Simply type a prompt and let our built-in image generator construct professional-looking product photos instantly.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Live Calculator & Cost Section */}
-      <section id="pricing" className="py-24 border-b border-zinc-900 bg-zinc-900/10">
+      {/* Interactive Fee Section */}
+      <section id="pricing" className="py-28 border-b border-zinc-900/60 bg-zinc-950 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <Badge className="bg-emerald-500/10 text-emerald-400 border-none">Fair Pricing</Badge>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                No Fixed Fees. We Grow Only When Your Business Grows.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-5 space-y-6 text-left">
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">No High Upfront Cost</Badge>
+              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+                Zero Subscriptions. We Only Earn When You Make Sales.
               </h2>
-              <p className="text-zinc-400 text-lg">
-                We believe Pakistani small businesses shouldn't pay heavy fixed monthly subscriptions. Get started for free, and then pay a small 2% commission per completed order.
+              <p className="text-zinc-400 text-base leading-relaxed">
+                Forget about expensive upfront bills. Karobari aligns entirely with your business success.
               </p>
               
-              <ul className="space-y-4 text-zinc-300">
-                <li className="flex items-center gap-3">
-                  <Percent className="h-5 w-5 text-emerald-400" />
-                  <span><strong>First 50 orders are 100% Free</strong>. No questions asked.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <TrendingUp className="h-5 w-5 text-emerald-400" />
-                  <span><strong>Only 2% fee</strong> applied to completed sales after the quota.</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <ShieldCheck className="h-5 w-5 text-emerald-400" />
-                  <span><strong>Accumulated invoice cycles:</strong> Pay at the end of the month via JazzCash, EasyPaisa, or Bank.</span>
-                </li>
-              </ul>
+              <div className="space-y-4 pt-2">
+                <div className="flex gap-4">
+                  <div className="h-6 w-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">50 Free Orders</h4>
+                    <p className="text-xs text-zinc-400">Setup your website and test all integrations at zero cost.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="h-6 w-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">Flat 2% Per Order Fee</h4>
+                    <p className="text-xs text-zinc-400">Pay a minimal 2% commission only on successfully completed orders.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="h-6 w-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white">Accumulated Ledger</h4>
+                    <p className="text-xs text-zinc-400">Clear accumulated monthly totals using EasyPaisa or JazzCash.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div>
+            <div className="lg:col-span-7">
               <PricingCalculator />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Local Pakistani FAQ Section */}
-      <section id="faq" className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-none mb-4">FAQ</Badge>
-            <h2 className="text-3xl font-bold text-white">Frequently Asked Questions</h2>
-            <p className="mt-4 text-zinc-400">Answers to everything you need to know about Karobari.</p>
+      {/* Local FAQ */}
+      <section id="faq" className="py-28 border-b border-zinc-900/60">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
+          <div className="space-y-4">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Frequently Asked Questions</Badge>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Everything You Need To Know</h2>
           </div>
 
-          <div className="space-y-8 text-left">
-            <div>
-              <h4 className="text-lg font-semibold text-white">Will Meta charge me for sending WhatsApp messages?</h4>
-              <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                No, as long as customers message you first, it opens a free-form 24-hour service window. Karobari leverages this window to send responses entirely for free. If you need to message users days later, paid utility templates are available.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+            <div className="space-y-2">
+              <h4 className="text-base font-bold text-white">Does the customer need a computer to place orders?</h4>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Not at all. Customers can simply message your connected shop WhatsApp number. Our Roman Urdu AI Agent behaves like a real person, shares your products, answers queries, and records their shipping data directly into the dashboard.
               </p>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold text-white">How do I verify customer EasyPaisa or JazzCash payments?</h4>
-              <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                During checkout, customers receive your EasyPaisa/JazzCash title and account number. They transfer manually and paste their Transaction ID (TID) or receipt screenshot. You review this in your dashboard and click "Approve" with one click.
+            <div className="space-y-2">
+              <h4 className="text-base font-bold text-white">How do EasyPaisa and JazzCash transfers work?</h4>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                During checkout, we display your mobile wallet account number and title. The customer manually transfers and submits their transaction number (TID). You review it side-by-side inside your admin panel before approving the order.
               </p>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold text-white">Can I register without using a computer?</h4>
-              <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                Absolutely. Text "Start Business" to our WhatsApp number. Our conversational AI assistant will interview you, generate your inventory catalog, configure a premium template, and launch your storefront—all completely on your phone.
+            <div className="space-y-2">
+              <h4 className="text-base font-bold text-white">What about custom domain configurations?</h4>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                You can insert any domain name (like `www.yoursalon.com`) in your admin dashboard. We make an API call to Vercel Domains in the background to automatically link your storefront page without rebooting servers.
               </p>
             </div>
 
-            <div>
-              <h4 className="text-lg font-semibold text-white">What happens if I don't pay the monthly 2% invoice?</h4>
-              <p className="mt-2 text-sm text-zinc-400 leading-relaxed">
-                We generate your billing invoice on the 1st of every month. If unpaid after a 7-day grace period, we temporarily redirect storefront traffic to a localized status page until the balance is cleared.
+            <div className="space-y-2">
+              <h4 className="text-base font-bold text-white">Are there any hidden costs?</h4>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                No hidden charges. We use incoming WhatsApp message windows to interact for free. Outbound templates are only needed for alerts outside the 24-hour window, which can be configured optionally later.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 border-t border-zinc-900 bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
-        <div className="max-w-4xl mx-auto px-4 text-center space-y-8">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-            Ready to Take Your Shop Online Today?
+      {/* CTA */}
+      <section className="py-24 bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-8 relative z-10">
+          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+            Apni Online Dukaan Aaj Hi Shuru Karen!
           </h2>
-          <p className="text-zinc-400 text-lg max-w-xl mx-auto">
-            Get your dynamic online store and WhatsApp assistant up and running in less than 5 minutes.
+          <p className="text-zinc-400 text-lg max-w-xl mx-auto font-medium">
+            Setup your store and launch a premium storefront within 5 minutes. No credit card required.
           </p>
           <div className="flex justify-center">
             <a
@@ -297,8 +426,8 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-lg px-8 py-6 rounded-xl flex items-center gap-2">
-                Launch My Business <ArrowRight className="h-5 w-5" />
+              <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-extrabold text-lg px-8 py-6 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/10">
+                Launch via WhatsApp <ArrowRight className="h-5 w-5" />
               </Button>
             </a>
           </div>
@@ -306,17 +435,16 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-zinc-950 py-12 text-center text-sm text-zinc-500">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p>© 2026 Karobari SaaS Platform. Built for small businesses in Pakistan.</p>
-          <div className="flex gap-6">
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-16 text-sm text-zinc-500">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <p>© 2026 Karobari SaaS Platform. Designed for micro-retailers in Pakistan.</p>
+          <div className="flex gap-8">
             <a href="#" className="hover:text-zinc-300">Privacy Policy</a>
             <a href="#" className="hover:text-zinc-300">Terms of Service</a>
-            <a href="#" className="hover:text-zinc-300">Support</a>
+            <a href="#" className="hover:text-zinc-300">Contact Support</a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
