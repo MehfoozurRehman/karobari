@@ -115,7 +115,7 @@ export default function Home() {
 
           <div className="flex justify-center items-center flex-wrap gap-x-8 gap-y-4 text-xs font-semibold text-zinc-500 pt-4">
             <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> First 50 Orders Free</span>
-            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Pay via EasyPaisa / JazzCash / COD</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Customers pay via EasyPaisa / JazzCash / COD</span>
             <span className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> No Technical Knowledge Required</span>
           </div>
 
