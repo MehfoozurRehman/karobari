@@ -63,7 +63,7 @@ export default function Home() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://wa.me/ourNumber?text=Start%20Business"
+              href="https://wa.me/923137178074?text=Start%20Business"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -72,7 +72,7 @@ export default function Home() {
               </Button>
             </a>
             <a
-              href="https://wa.me/ourNumber?text=Start%20Business"
+              href="https://wa.me/923137178074?text=Start%20Business"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -104,7 +104,7 @@ export default function Home() {
 
           <div className="pt-6 flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
             <a
-              href="https://wa.me/ourNumber?text=Start%20Business"
+              href="https://wa.me/923137178074?text=Start%20Business"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full"
@@ -439,7 +439,7 @@ export default function Home() {
           </p>
           <div className="flex justify-center">
             <a
-              href="https://wa.me/ourNumber?text=Start%20Business"
+              href="https://wa.me/923137178074?text=Start%20Business"
               target="_blank"
               rel="noopener noreferrer"
             >

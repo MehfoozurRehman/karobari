@@ -33,7 +33,7 @@ export function SharedHeader() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://wa.me/ourNumber?text=Start%20Business"
+            href="https://wa.me/923137178074?text=Start%20Business"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -42,7 +42,7 @@ export function SharedHeader() {
             </Button>
           </a>
           <a
-            href="https://wa.me/ourNumber?text=Start%20Business"
+            href="https://wa.me/923137178074?text=Start%20Business"
             target="_blank"
             rel="noopener noreferrer"
           >
