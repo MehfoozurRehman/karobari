@@ -179,9 +179,6 @@ export default function Home() {
                     <h4 className="text-base font-bold text-white">Dynamic Storefront Web App</h4>
                     <p className="text-xs text-zinc-400">Beautiful templates generated matching your brand</p>
                   </div>
-                  <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                    Live Demo <ArrowUpRight className="h-3.5 w-3.5" />
-                  </span>
                 </div>
 
                 <div className="border border-zinc-800 bg-zinc-950 rounded-2xl p-4 space-y-4">
@@ -195,8 +192,14 @@ export default function Home() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div className="p-3 rounded-xl border border-zinc-850 bg-zinc-900/50 space-y-2">
-                      <div className="h-20 bg-zinc-800 rounded-lg relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
+                      <div className="h-28 bg-zinc-800 rounded-lg relative overflow-hidden">
+                        <Image
+                          src="/images/shinwari_tikka.png"
+                          alt="Shinwari Tikka"
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex items-end p-2">
                           <span className="text-[10px] font-bold text-white">Shinwari Tikka</span>
                         </div>
                       </div>
@@ -207,8 +210,14 @@ export default function Home() {
                     </div>
 
                     <div className="p-3 rounded-xl border border-zinc-850 bg-zinc-900/50 space-y-2">
-                      <div className="h-20 bg-zinc-800 rounded-lg relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-2">
+                      <div className="h-28 bg-zinc-800 rounded-lg relative overflow-hidden">
+                        <Image
+                          src="/images/shinwari_pulao.png"
+                          alt="Shinwari Pulao"
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent flex items-end p-2">
                           <span className="text-[10px] font-bold text-white">Shinwari Pulao</span>
                         </div>
                       </div>
