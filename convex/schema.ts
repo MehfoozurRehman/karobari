@@ -13,67 +13,31 @@ export default defineSchema({
     createdAt: v.number(),
   }).index("by_status", ["status"]),
 
-  // Businesses/Tenants registered on the platform
+  // Refined Multi-Tenant Business Registry Table
   businesses: defineTable({
-    ownerName: v.string(),
-    ownerPhone: v.string(), // e.g. "923137178074"
-    name: v.string(),       // e.g. "Khyber Shinwari"
-    slug: v.string(),       // e.g. "khyber-shinwari" (used for subdomain/routing)
-    cities: v.array(v.string()), // e.g. ["Karachi", "Lahore"] (for multi-branch support)
-    industry: v.string(),   // e.g. "restaurant", "salon", "hotel", "retail"
-    walletType: v.union(v.literal("easypaisa"), v.literal("jazzcash"), v.literal("bank")),
-    walletNumber: v.string(),
-    walletTitle: v.string(),
+    name: v.string(),             // e.g. "Khyber Shinwari"
+    slug: v.string(),             // e.g. "khyber-shinwari" (used for subdomain / URL routing)
+    logoUrl: v.optional(v.string()), // Business Logo Image URL
+    industry: v.string(),         // e.g. "restaurant", "salon", "retail"
     status: v.union(v.literal("active"), v.literal("suspended")),
+    
+    // Owner details
+    ownerName: v.string(),
+    ownerPhone: v.string(),       // Owner WhatsApp/Phone Number
+
+    // WhatsApp Meta OAuth details
+    whatsappBusinessAccountId: v.optional(v.string()),
+    whatsappPhoneNumberId: v.optional(v.string()),
+    whatsappAccessToken: v.optional(v.string()),
+    whatsappConnected: v.boolean(),
+
+    // Payment gateway details (displayed to customers during checkouts)
+    paymentGatewayName: v.string(),   // e.g. "EasyPaisa", "JazzCash", "Meezan Bank"
+    paymentGatewayNumber: v.string(), // e.g. "03137178074", "1234567890"
+    paymentGatewayTitle: v.string(),  // e.g. "Mehfooz ur Rehman"
+    
     createdAt: v.number(),
   })
   .index("by_slug", ["slug"])
   .index("by_ownerPhone", ["ownerPhone"]),
-
-  // Catalog items/products for each business
-  products: defineTable({
-    businessId: v.id("businesses"),
-    name: v.string(),
-    description: v.string(),
-    price: v.number(),
-    discountPrice: v.optional(v.number()),
-    imageUrl: v.optional(v.string()),
-    category: v.string(),    // e.g. "Karahi", "Services"
-    inStock: v.boolean(),
-    createdAt: v.number(),
-  }).index("by_business", ["businessId"]),
-
-  // Customer orders
-  orders: defineTable({
-    businessId: v.id("businesses"),
-    customerName: v.string(),
-    customerPhone: v.string(),
-    city: v.string(),
-    area: v.string(),       // e.g. "DHA Phase 5"
-    addressDetails: v.string(), // e.g. "House 42, Street 3, Block Z"
-    paymentMethod: v.union(v.literal("cod"), v.literal("easypaisa"), v.literal("jazzcash")),
-    paymentTid: v.optional(v.string()), // Transaction ID for mobile wallets
-    paymentProofUrl: v.optional(v.string()),
-    totalAmount: v.number(),
-    status: v.union(
-      v.literal("pending_verification"),
-      v.literal("preparing"),
-      v.literal("out_for_delivery"),
-      v.literal("completed"),
-      v.literal("cancelled")
-    ),
-    riderTip: v.optional(v.number()),
-    commissionOwed: v.number(), // 2% calculation stored at time of completion
-    createdAt: v.number(),
-  })
-  .index("by_business", ["businessId"])
-  .index("by_status", ["status"]),
-
-  // Order items list
-  orderItems: defineTable({
-    orderId: v.id("orders"),
-    productId: v.id("products"),
-    quantity: v.number(),
-    unitPrice: v.number(),
-  }).index("by_order", ["orderId"]),
 });
