@@ -83,14 +83,14 @@ export default function Home() {
             <Sparkles className="h-3.5 w-3.5" /> Made for Pakistani Small Businesses
           </div>
           
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1]">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1]">
             Apna Karobar Online Le Kar Ayein —{" "}
             <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 bg-clip-text text-transparent">
               Sirf Aik WhatsApp Message Se!
             </span>
           </h1>
 
-          <p className="mt-6 text-xl text-zinc-400 max-w-3xl mx-auto font-medium leading-relaxed">
+          <p className="mt-6 text-base sm:text-lg text-zinc-400 max-w-3xl mx-auto font-medium leading-relaxed">
             Beautiful dynamic websites, auto-generated instantly. Interact with customers and manage incoming orders using a Roman Urdu AI Agent on your own WhatsApp number.
           </p>
 
@@ -101,13 +101,13 @@ export default function Home() {
               rel="noopener noreferrer"
               className="w-full"
             >
-              <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-lg py-7 rounded-xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:translate-y-[-2px]">
+              <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold text-base py-7 rounded-xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/20 transition-all duration-300 hover:translate-y-[-2px]">
                 <MessageSquare className="h-5 w-5 fill-black" />
                 Setup via WhatsApp
               </Button>
             </a>
             <a href="#pricing" className="w-full">
-              <Button variant="ghost" className="w-full text-zinc-300 hover:text-white border border-zinc-800 hover:bg-zinc-900/60 py-7 rounded-xl text-lg font-bold">
+              <Button variant="ghost" className="w-full text-zinc-300 hover:text-white border border-zinc-800 hover:bg-zinc-900/60 py-7 rounded-xl text-base font-bold">
                 Calculate Earnings
               </Button>
             </a>
@@ -176,7 +176,7 @@ export default function Home() {
               <div className="space-y-6 relative z-10">
                 <div className="flex justify-between items-center pb-4 border-b border-zinc-800/80">
                   <div>
-                    <h4 className="text-base font-bold text-white">Dynamic Storefront Web App</h4>
+                    <h4 className="text-sm font-bold text-white">Dynamic Storefront Web App</h4>
                     <p className="text-xs text-zinc-400">Beautiful templates generated matching your brand</p>
                   </div>
                 </div>
@@ -249,10 +249,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
           <div className="space-y-4">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Comprehensive Capabilities</Badge>
-            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
               Features Built to Deliver Credibility
             </h2>
-            <p className="text-lg text-zinc-400 max-w-2xl mx-auto font-medium">
+            <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto font-medium">
               We provide professional tools to scale your business operations with zero tech stress.
             </p>
           </div>
@@ -263,7 +263,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <Globe className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">Custom Domain Rewrite</h3>
+              <h3 className="text-lg font-bold text-white">Custom Domain Rewrite</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Connect your custom `.com` or `.pk` domain directly. We configure SSL certificates dynamically through Vercel Integration so your shop looks completely independent.
               </p>
@@ -274,7 +274,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <Smartphone className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">Interactive Owner Agent</h3>
+              <h3 className="text-lg font-bold text-white">Interactive Owner Agent</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Control your store directly from your own WhatsApp. Text "Sales report" to see today's volume, or text "Verify order 102" to authorize bank transfers instantly.
               </p>
@@ -285,7 +285,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <DollarSign className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">Rider Tip & Rating Pool</h3>
+              <h3 className="text-lg font-bold text-white">Rider Tip & Rating Pool</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Customers can add customized tip values for delivery riders directly during checkouts. Complete customer review cards map straight back into your dashboard.
               </p>
@@ -296,7 +296,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <Users className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">Employee Salary Ledgers</h3>
+              <h3 className="text-lg font-bold text-white">Employee Salary Ledgers</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Log employee information, base pay parameters, and payment status ledgers internally. Keep your operational financials organized in one place.
               </p>
@@ -307,7 +307,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <Percent className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">Interactive Discounts</h3>
+              <h3 className="text-lg font-bold text-white">Interactive Discounts</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 Offer special discounted rates for single menu items or bulk catalog elements. System-wide marketing parameters populate onto storefront cards automatically.
               </p>
@@ -318,7 +318,7 @@ export default function Home() {
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                 <Sparkles className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white">AI Image Generator</h3>
+              <h3 className="text-lg font-bold text-white">AI Image Generator</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
                 No high-quality pictures for your products? Simply type a prompt and let our built-in image generator construct professional-looking product photos instantly.
               </p>
@@ -333,7 +333,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-5 space-y-6 text-left">
               <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">No High Upfront Cost</Badge>
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1]">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-[1.1]">
                 Zero Subscriptions. We Only Earn When You Make Sales.
               </h2>
               <p className="text-zinc-400 text-base leading-relaxed">
@@ -381,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* Local FAQ */}
-      <section id="faq" className="py-28 border-b border-zinc-900/60">
+      <section id="faq" className="py-24 border-b border-zinc-900/60">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 text-center">
           <div className="space-y-4">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-none font-bold">Frequently Asked Questions</Badge>
@@ -423,10 +423,10 @@ export default function Home() {
       {/* CTA */}
       <section className="py-24 bg-gradient-to-b from-zinc-950 to-zinc-900 relative">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-8 relative z-10">
-          <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
             Apni Online Dukaan Aaj Hi Shuru Karen!
           </h2>
-          <p className="text-zinc-400 text-lg max-w-xl mx-auto font-medium">
+          <p className="text-zinc-400 text-base sm:text-lg max-w-xl mx-auto font-medium">
             Setup your store and launch a premium storefront within 5 minutes. No credit card required.
           </p>
           <div className="flex justify-center">
@@ -435,7 +435,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-extrabold text-lg px-8 py-6 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/10">
+              <Button className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-extrabold text-base px-8 py-6 rounded-xl flex items-center gap-2 shadow-lg shadow-emerald-500/10">
                 Launch via WhatsApp <ArrowRight className="h-5 w-5" />
               </Button>
             </a>
