@@ -276,7 +276,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-bold text-white">Interactive Owner Agent</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                Control your store directly from your own WhatsApp. Text "Sales report" to see today's volume, or text "Verify order 102" to authorize bank transfers instantly.
+                Manage operations directly over WhatsApp text. Ask "Aaj kitni sales huin?" to get instant summaries, or confirm order payments on the go without visiting a dashboard.
               </p>
             </div>
 
