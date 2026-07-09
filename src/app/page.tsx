@@ -265,7 +265,7 @@ export default function Home() {
               </div>
               <h3 className="text-lg font-bold text-white">Custom Domain Rewrite</h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                Connect your custom `.com` or `.pk` domain directly. We configure SSL certificates dynamically through Vercel Integration so your shop looks completely independent.
+                Connect your custom `.com` or `.pk` domain directly. We configure SSL certificates dynamically behind the scenes so your shop looks completely professional.
               </p>
             </div>
 
@@ -406,7 +406,7 @@ export default function Home() {
             <div className="space-y-2">
               <h4 className="text-base font-bold text-white">What about custom domain configurations?</h4>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                You can insert any domain name (like `www.yoursalon.com`) in your admin dashboard. We make an API call to Vercel Domains in the background to automatically link your storefront page without rebooting servers.
+                You can insert any domain name (like `www.yoursalon.com`) in your admin dashboard. We make API calls to register and link your storefront page dynamically without any manual server configuration needed.
               </p>
             </div>
 
