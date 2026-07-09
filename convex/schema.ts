@@ -19,7 +19,7 @@ export default defineSchema({
     ownerPhone: v.string(), // e.g. "923137178074"
     name: v.string(),       // e.g. "Khyber Shinwari"
     slug: v.string(),       // e.g. "khyber-shinwari" (used for subdomain/routing)
-    city: v.string(),       // e.g. "Karachi", "Lahore"
+    cities: v.array(v.string()), // e.g. ["Karachi", "Lahore"] (for multi-branch support)
     industry: v.string(),   // e.g. "restaurant", "salon", "hotel", "retail"
     walletType: v.union(v.literal("easypaisa"), v.literal("jazzcash"), v.literal("bank")),
     walletNumber: v.string(),
