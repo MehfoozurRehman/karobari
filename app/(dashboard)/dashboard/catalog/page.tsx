@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useConvexAuth, useMutation, useQuery } from "convex/react";
+import { useAction, useConvexAuth, useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { Button } from "@/components/ui/button";
@@ -52,6 +52,7 @@ export default function CatalogPage() {
   const updateItem = useMutation(api.catalog.updateItem);
   const deleteItem = useMutation(api.catalog.deleteItem);
   const createCategory = useMutation(api.catalog.createCategory);
+  const generateImage = useAction(api.images.generateItemImage);
   const deleteCategory = useMutation(api.catalog.deleteCategory);
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -315,6 +316,24 @@ export default function CatalogPage() {
                   </div>
                 </div>
                 <div className="flex shrink-0 gap-1">
+                  <button
+                    className="rounded-lg p-1.5 text-emerald-600 hover:bg-emerald-50 disabled:animate-pulse disabled:text-stone-300"
+                    disabled={item.imageStatus === "generating"}
+                    title="Generate AI image"
+                    onClick={async () => {
+                      toast.info(`Generating image for ${item.name}...`);
+                      try {
+                        await generateImage({ itemId: item._id });
+                        toast.success("Image ready ✨");
+                      } catch (e) {
+                        toast.error(
+                          e instanceof Error ? e.message : "Image failed",
+                        );
+                      }
+                    }}
+                  >
+                    <Sparkles className="h-4 w-4" />
+                  </button>
                   <button
                     className="rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
                     onClick={() => {
