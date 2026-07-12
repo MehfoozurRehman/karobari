@@ -319,9 +319,16 @@ export default function CatalogPage() {
                     disabled={item.imageStatus === "generating"}
                     title="Generate AI image"
                     onClick={async () => {
+                      const extraPrompt =
+                        window.prompt(
+                          "Image ke liye extra details (khali chhor dein for default):",
+                        ) ?? undefined;
                       toast.info(`Generating image for ${item.name}...`);
                       try {
-                        await generateImage({ itemId: item._id });
+                        await generateImage({
+                          itemId: item._id,
+                          extraPrompt: extraPrompt || undefined,
+                        });
                         toast.success("Image ready ✨");
                       } catch (e) {
                         toast.error(

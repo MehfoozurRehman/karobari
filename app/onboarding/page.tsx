@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 import { useEffect } from "react";
 
 const CATEGORIES = [
@@ -81,6 +82,7 @@ export default function OnboardingPage() {
               : undefined,
         },
       });
+      posthog.capture("business_created", { category, via: "web" });
       toast.success("Mubarak ho! Aap ka store ban gaya 🎉");
       router.replace("/dashboard/catalog/import");
     } catch (e) {

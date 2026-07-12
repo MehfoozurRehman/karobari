@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import posthog from "posthog-js";
 
 type PaymentSettings = {
   codEnabled: boolean;
@@ -88,6 +89,12 @@ export function CheckoutForm({
           catalogItemId: l.itemId as Id<"catalogItems">,
           qty: l.qty,
         })),
+      });
+      posthog.capture("order_placed", {
+        orderNumber: result.orderNumber,
+        paymentMethod: method,
+        itemCount: lines.length,
+        totalPaisa: cartTotalPaisa(lines),
       });
       clear();
       if (whatsappNumber) {

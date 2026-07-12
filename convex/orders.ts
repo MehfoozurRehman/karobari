@@ -1,8 +1,4 @@
-import {
-  internalQuery,
-  mutation,
-  query,
-} from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { Doc, Id } from "./_generated/dataModel";
 import type { MutationCtx } from "./_generated/server";
@@ -308,35 +304,6 @@ export const markPaid = mutation({
       throw new Error("Order not found");
     await ctx.db.patch("orders", args.orderId, { paymentStatus: "paid" });
     return null;
-  },
-});
-
-export const statsInternal = internalQuery({
-  args: {
-    businessId: v.id("businesses"),
-    sinceMs: v.number(),
-  },
-  handler: async (ctx, args) => {
-    const completed = await ctx.db
-      .query("orders")
-      .withIndex("by_businessId_and_completedAt", (q) =>
-        q.eq("businessId", args.businessId).gte("completedAt", args.sinceMs),
-      )
-      .take(1000);
-    const pending = await ctx.db
-      .query("orders")
-      .withIndex("by_businessId_and_status", (q) =>
-        q.eq("businessId", args.businessId).eq("status", "pending"),
-      )
-      .take(100);
-    const revenue = completed.reduce((sum, o) => sum + o.totalPaisa, 0);
-    const tips = completed.reduce((sum, o) => sum + (o.tipPaisa ?? 0), 0);
-    return {
-      completedCount: completed.length,
-      revenuePaisa: revenue,
-      tipsPaisa: tips,
-      pendingCount: pending.length,
-    };
   },
 });
 
