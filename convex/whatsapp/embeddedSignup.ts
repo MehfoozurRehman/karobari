@@ -1,8 +1,9 @@
 import { action, internalMutation, internalQuery } from "../_generated/server";
-import { internal } from "../_generated/api";
-import { v } from "convex/values";
-import { requireOwner } from "../lib/access";
+
 import type { Id } from "../_generated/dataModel";
+import { internal } from "../_generated/api";
+import { requireOwner } from "../lib/access";
+import { v } from "convex/values";
 
 const GRAPH_BASE = "https://graph.facebook.com/v23.0";
 
@@ -73,7 +74,7 @@ export const exchangeCode = action({
     );
     if (!businessId) throw new Error("Not authorized");
 
-    const appId = process.env.META_APP_ID;
+    const appId = process.env.NEXT_PUBLIC_META_APP_ID;
     const appSecret = process.env.META_APP_SECRET;
     if (!appId || !appSecret) {
       throw new Error("META_APP_ID / META_APP_SECRET not configured");
@@ -84,19 +85,14 @@ export const exchangeCode = action({
     );
     const tokenJson = await tokenRes.json();
     if (!tokenRes.ok || !tokenJson.access_token) {
-      throw new Error(
-        tokenJson?.error?.message ?? "Token exchange failed",
-      );
+      throw new Error(tokenJson?.error?.message ?? "Token exchange failed");
     }
     const accessToken: string = tokenJson.access_token;
 
-    const subRes = await fetch(
-      `${GRAPH_BASE}/${args.wabaId}/subscribed_apps`,
-      {
-        method: "POST",
-        headers: { Authorization: `Bearer ${accessToken}` },
-      },
-    );
+    const subRes = await fetch(`${GRAPH_BASE}/${args.wabaId}/subscribed_apps`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
     if (!subRes.ok) {
       throw new Error(`App subscription failed: ${await subRes.text()}`);
     }
@@ -125,8 +121,7 @@ export const exchangeCode = action({
       { headers: { Authorization: `Bearer ${accessToken}` } },
     );
     const info = await infoRes.json();
-    const displayPhoneNumber: string =
-      info.display_phone_number ?? "unknown";
+    const displayPhoneNumber: string = info.display_phone_number ?? "unknown";
 
     await ctx.runMutation(
       internal.whatsapp.embeddedSignup.saveAccountInternal,
