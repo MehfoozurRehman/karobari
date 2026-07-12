@@ -1,18 +1,14 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Toaster } from "@/components/ui/sonner";
-import { ConvexClientProvider } from "@/components/providers/convex-client-provider";
-import { PostHogProvider } from "@/components/providers/posthog-provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { ClerkProvider } from "@clerk/nextjs";
+import { ConvexClientProvider } from "@/components/providers/convex-client-provider";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
+import { PostHogProvider } from "@/components/providers/posthog-provider";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunito = Nunito({
+  variable: "--font-nunito",
   subsets: ["latin"],
 });
 
@@ -32,10 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      >
+      <html lang="en" className={`${nunito.className} h-full antialiased`}>
         <body className="min-h-full flex flex-col">
           <ConvexClientProvider>
             <PostHogProvider>{children}</PostHogProvider>
