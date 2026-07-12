@@ -55,7 +55,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-[#faf9f6]">
       <SyncUser />
-      {/* Sidebar */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-stone-200 bg-white lg:flex">
         <div className="flex h-16 items-center gap-2.5 border-b border-stone-200 px-5">
           <Image
@@ -110,7 +109,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         )}
       </aside>
 
-      {/* Main */}
       <div className="flex min-h-screen flex-1 flex-col lg:pl-60">
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-stone-200 bg-white/85 px-4 backdrop-blur-xl sm:px-6">
           <div className="flex items-center gap-3 lg:hidden">
@@ -158,7 +156,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           )}
         </main>
 
-        {/* Mobile bottom nav */}
         <nav className="sticky bottom-0 z-30 flex justify-around border-t border-stone-200 bg-white py-2 lg:hidden">
           {nav.slice(0, 5).map((item) => {
             const active =

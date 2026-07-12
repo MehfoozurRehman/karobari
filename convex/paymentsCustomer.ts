@@ -2,7 +2,6 @@ import { mutation } from "./_generated/server";
 import { v } from "convex/values";
 import { requireOwner } from "./lib/access";
 
-/** Public: generate an upload URL for a payment screenshot. */
 export const generateProofUploadUrl = mutation({
   args: { trackingToken: v.string() },
   returns: v.string(),
@@ -18,7 +17,6 @@ export const generateProofUploadUrl = mutation({
   },
 });
 
-/** Public: customer submits TID and/or screenshot for a wallet payment. */
 export const submitProof = mutation({
   args: {
     trackingToken: v.string(),
@@ -53,7 +51,6 @@ export const submitProof = mutation({
   },
 });
 
-/** Business owner reviews a customer's payment proof. */
 export const reviewProof = mutation({
   args: {
     proofId: v.id("paymentProofs"),

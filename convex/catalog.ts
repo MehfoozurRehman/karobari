@@ -69,7 +69,6 @@ export const deleteCategory = mutation({
     const category = await ctx.db.get("catalogCategories", args.categoryId);
     if (!category || category.businessId !== business._id)
       throw new Error("Category not found");
-    // Detach items from the category rather than deleting them.
     const items = await ctx.db
       .query("catalogItems")
       .withIndex("by_businessId_and_categoryId", (q) =>
@@ -161,7 +160,6 @@ export const deleteItem = mutation({
   },
 });
 
-/** Bulk-insert AI-imported catalog (categories + items). */
 export const bulkImport = mutation({
   args: {
     categories: v.array(

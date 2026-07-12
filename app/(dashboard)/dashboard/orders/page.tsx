@@ -7,6 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPaisa } from "@/lib/currency";
+import { formatDate, formatDateTime } from "@/lib/dates";
 import { STATUS_COLORS } from "@/components/dashboard/order-status";
 
 const STATUSES = [
@@ -90,7 +91,7 @@ export default function OrdersPage() {
                 <p className="mt-0.5 truncate text-xs text-stone-500">
                   {order.customerName ?? order.customerPhone} ·{" "}
                   {order.paymentMethod.toUpperCase()} ·{" "}
-                  {new Date(order._creationTime).toLocaleString("en-PK")}
+                  {formatDateTime(order._creationTime)}
                 </p>
               </div>
               <p className="font-bold text-emerald-700">

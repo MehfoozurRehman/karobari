@@ -55,7 +55,6 @@ export default function OnboardingPage() {
   const [jcNumber, setJcNumber] = useState("");
   const [themeId, setThemeId] = useState("classic");
 
-  // Already has a business → go to dashboard.
   useEffect(() => {
     if (me?.business) router.replace("/dashboard");
   }, [me, router]);

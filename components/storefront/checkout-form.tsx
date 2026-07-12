@@ -90,8 +90,6 @@ export function CheckoutForm({
         })),
       });
       clear();
-      // Open the WhatsApp confirm deep link so the customer messages first
-      // (this opens the free 24-hour service window for the business).
       if (whatsappNumber) {
         window.open(
           `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(

@@ -15,7 +15,6 @@ export function StoreHeader({
   const { lines, setTenant } = useCart();
   const count = lines.reduce((s, l) => s + l.qty, 0);
 
-  // Bind the cart to this store on mount (clears carts from other stores).
   useEffect(() => {
     setTenant(window.location.host);
   }, [setTenant]);

@@ -22,6 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { formatPaisa } from "@/lib/currency";
+import { formatDate, formatDateTime } from "@/lib/dates";
 import { toast } from "sonner";
 import { Plus } from "lucide-react";
 
@@ -273,7 +274,7 @@ export default function EmployeesPage() {
                   <p className="text-xs capitalize text-stone-500">
                     {entry.type}
                     {entry.note ? ` · ${entry.note}` : ""} ·{" "}
-                    {new Date(entry.paidAt).toLocaleDateString("en-PK")}
+                    {formatDate(entry.paidAt)}
                   </p>
                 </div>
                 <p

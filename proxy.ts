@@ -21,8 +21,6 @@ export default clerkMiddleware(async (auth, req) => {
     host.endsWith(".vercel.app") ||
     host.endsWith(".localhost");
 
-  // Storefront hosts: subdomains of the root domain, custom domains, and
-  // `{slug}.localhost` for local testing.
   if (!isPlatformHost || (host.endsWith(".localhost") && host !== "localhost")) {
     let tenant: string;
     if (host.endsWith(`.${ROOT_DOMAIN}`)) {
@@ -30,7 +28,7 @@ export default clerkMiddleware(async (auth, req) => {
     } else if (host.endsWith(".localhost")) {
       tenant = host.slice(0, -".localhost".length);
     } else {
-      tenant = host; // full custom domain
+      tenant = host;
     }
     if (tenant && tenant !== "www") {
       return NextResponse.rewrite(
@@ -48,7 +46,6 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(api|trpc)(.*)",
   ],

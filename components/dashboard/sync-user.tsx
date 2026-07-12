@@ -5,7 +5,6 @@ import { useUser } from "@clerk/nextjs";
 import { useConvexAuth, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
-/** Ensures a Convex users row exists for the signed-in Clerk user. */
 export function SyncUser() {
   const { user } = useUser();
   const { isAuthenticated } = useConvexAuth();

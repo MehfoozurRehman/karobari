@@ -21,7 +21,6 @@ const RESERVED_SLUGS = new Set([
   "help", "docs", "status", "dev", "staging",
 ]);
 
-/** Find a free slug, appending -2, -3, ... on collision. Shared helper. */
 export async function allocateSlug(
   ctx: { db: { query: (t: "businesses") => any } },
   name: string,
@@ -136,7 +135,6 @@ export const getMine = query({
   },
 });
 
-/** Resolve a storefront tenant: subdomain slug or a full custom domain. */
 export const getByTenant = query({
   args: { tenant: v.string() },
   handler: async (ctx, args) => {

@@ -1,32 +1,22 @@
 import { MutationCtx } from "../_generated/server";
 import { Doc, Id } from "../_generated/dataModel";
+import { nowPkt } from "./dates";
 
 export const FREE_ORDER_QUOTA = 20;
 export const BASE_FEE_PAISA = 300 * 100;
 export const COMMISSION_RATE = 0.02;
 export const GRACE_PERIOD_MS = 7 * 24 * 60 * 60 * 1000;
 
-/** Current billing period like "2026-07" in Pakistan time (UTC+5). */
 export function currentPeriod(now = Date.now()): string {
-  const pkt = new Date(now + 5 * 60 * 60 * 1000);
-  const y = pkt.getUTCFullYear();
-  const m = String(pkt.getUTCMonth() + 1).padStart(2, "0");
-  return `${y}-${m}`;
+  return nowPkt(now).format("YYYY-MM");
 }
 
-/** Previous billing period relative to `period` ("2026-07" -> "2026-06"). */
 export function previousPeriod(period: string): string {
-  const [y, m] = period.split("-").map(Number);
-  const prev = m === 1 ? [y - 1, 12] : [y, m - 1];
-  return `${prev[0]}-${String(prev[1]).padStart(2, "0")}`;
+  return nowPkt(new Date(`${period}-15T00:00:00Z`).getTime())
+    .subtract(1, "month")
+    .format("YYYY-MM");
 }
 
-/**
- * Record a completed order against the business's billing state.
- * Consumes free quota first; afterwards accrues 2% commission (plus the
- * Rs. 300 base fee once per month) into the open ledger entry.
- * Must be called inside the same mutation that marks the order completed.
- */
 export async function recordCompletedOrder(
   ctx: MutationCtx,
   business: Doc<"businesses">,
@@ -44,7 +34,7 @@ export async function recordCompletedOrder(
   }
 
   const period = currentPeriod();
-  let entry = await ctx.db
+  const entry = await ctx.db
     .query("ledgerEntries")
     .withIndex("by_businessId_and_period", (q) =>
       q.eq("businessId", business._id).eq("period", period),
@@ -53,7 +43,7 @@ export async function recordCompletedOrder(
 
   const commission = Math.round(order.totalPaisa * COMMISSION_RATE);
   if (!entry) {
-    const entryId = await ctx.db.insert("ledgerEntries", {
+    return await ctx.db.insert("ledgerEntries", {
       businessId: business._id,
       period,
       baseFeePaisa: BASE_FEE_PAISA,
@@ -62,7 +52,6 @@ export async function recordCompletedOrder(
       completedVolumePaisa: order.totalPaisa,
       status: "open",
     });
-    return entryId;
   }
   await ctx.db.patch("ledgerEntries", entry._id, {
     commissionPaisa: entry.commissionPaisa + commission,

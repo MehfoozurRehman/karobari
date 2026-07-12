@@ -1,7 +1,3 @@
-/**
- * Normalize a Pakistani phone number to `923XXXXXXXXX` (no plus sign).
- * Mirror of lib/phone.ts on the frontend — keep in sync.
- */
 export function normalizePkPhone(input: string): string | null {
   const digits = input.replace(/\D/g, "");
   if (!digits) return null;

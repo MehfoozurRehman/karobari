@@ -3,11 +3,6 @@ import { v } from "convex/values";
 import { getCurrentUser } from "./lib/access";
 import { normalizePkPhone } from "./lib/phone";
 
-/**
- * Ensure a users row exists for the signed-in Clerk user, and auto-link a
- * WhatsApp-onboarded business whose ownerPhone matches the user's phone.
- * Called from the dashboard shell on sign-in.
- */
 export const ensureUser = mutation({
   args: {
     email: v.string(),
@@ -53,7 +48,6 @@ export const ensureUser = mutation({
       });
     }
 
-    // Auto-link a WhatsApp-onboarded business by owner phone match.
     const user = await ctx.db.get("users", userId);
     if (user && !user.businessId && user.phone) {
       const business = await ctx.db

@@ -5,7 +5,6 @@ import {
   unstable_cacheTag as cacheTag,
 } from "next/cache";
 
-/** Cached storefront data lookup for a tenant (slug or custom domain). */
 export async function getStore(tenant: string) {
   "use cache";
   cacheLife("minutes");

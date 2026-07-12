@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatPaisa } from "@/lib/currency";
+import { formatDate, formatDateTime } from "@/lib/dates";
 import { formatPkPhone } from "@/lib/phone";
 import {
   NEXT_STATUS,
@@ -77,7 +78,7 @@ export default function OrderDetailPage({
             </Badge>
           </h1>
           <p className="text-xs text-stone-500">
-            {new Date(order._creationTime).toLocaleString("en-PK")} · via{" "}
+            {formatDateTime(order._creationTime)} · via{" "}
             {order.source}
           </p>
         </div>

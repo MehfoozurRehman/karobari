@@ -2,7 +2,6 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { requireOwner } from "./lib/access";
 
-/** Public: submit rating + optional tip via the order tracking token. */
 export const submit = mutation({
   args: {
     trackingToken: v.string(),

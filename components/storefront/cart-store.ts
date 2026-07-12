@@ -12,7 +12,6 @@ export type CartLine = {
 };
 
 type CartState = {
-  /** Tenant slug the cart belongs to — cleared when visiting another store. */
   tenant: string | null;
   lines: CartLine[];
   setTenant: (tenant: string) => void;

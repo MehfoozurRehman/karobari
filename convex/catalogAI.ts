@@ -26,11 +26,6 @@ const catalogSchema = z.object({
   ),
 });
 
-/**
- * Parse a free-form pasted menu / product list (English, Urdu, or Roman Urdu)
- * into a structured catalog. Used by the dashboard import page and reused by
- * the WhatsApp onboarding agent.
- */
 export const importFromText = action({
   args: { text: v.string() },
   returns: v.object({
@@ -55,7 +50,6 @@ export const importFromText = action({
   },
 });
 
-/** Shared parser also used internally by the WhatsApp onboarding agent. */
 export async function parseCatalogText(text: string) {
   const { object } = await generateObject({
     model: openai("gpt-5-mini"),
@@ -70,7 +64,6 @@ export async function parseCatalogText(text: string) {
       "Never invent items or prices that are not in the text. Skip lines without a price.",
     prompt: text,
   });
-  // Drop items the model may have emitted with invalid prices.
   const categories = object.categories
     .map((c) => ({
       ...c,

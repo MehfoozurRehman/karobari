@@ -101,7 +101,6 @@ export const pendingInternal = internalQuery({
   },
 });
 
-/** Owner connects a custom domain: registers it with the Vercel project. */
 export const add = action({
   args: { domain: v.string() },
   returns: v.null(),
@@ -135,7 +134,6 @@ export const add = action({
   },
 });
 
-/** Cron: poll Vercel for DNS verification status of non-active domains. */
 export const checkPending = internalAction({
   args: {},
   returns: v.null(),
@@ -156,7 +154,6 @@ export const checkPending = internalAction({
           });
         }
       } catch {
-        // Leave status unchanged; retried on the next cron run.
       }
     }
     return null;

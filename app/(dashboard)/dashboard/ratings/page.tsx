@@ -3,6 +3,7 @@
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { formatPaisa } from "@/lib/currency";
+import { formatDate, formatDateTime } from "@/lib/dates";
 
 export default function RatingsPage() {
   const { isAuthenticated } = useConvexAuth();
@@ -75,7 +76,7 @@ export default function RatingsPage() {
               )}
               <p className="mt-1 text-xs text-stone-400">
                 {r.customerName ?? "Customer"} ·{" "}
-                {new Date(r._creationTime).toLocaleDateString("en-PK")}
+                {formatDate(r._creationTime)}
               </p>
             </div>
           ))}

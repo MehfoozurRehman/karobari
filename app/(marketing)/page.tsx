@@ -79,7 +79,6 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero */}
       <section className="relative overflow-hidden">
         <div
           aria-hidden
@@ -135,10 +134,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WhatsApp demo + storefront showcase */}
       <section id="whatsapp" className="scroll-mt-20 border-y border-stone-200 bg-white">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-8 px-4 py-16 sm:px-6 lg:grid-cols-12">
-          {/* WhatsApp chat mockup */}
           <div className="flex flex-col justify-between rounded-3xl border border-stone-200 bg-[#faf9f6] p-5 shadow-sm lg:col-span-5">
             <div>
               <div className="mb-4 flex items-center justify-between border-b border-stone-200 pb-4">
@@ -212,7 +209,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Storefront showcase */}
           <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200 bg-[#faf9f6] p-5 shadow-sm lg:col-span-7">
             <div className="space-y-5">
               <div className="flex items-center justify-between border-b border-stone-200 pb-4">
@@ -304,7 +300,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features */}
       <section id="features" className="scroll-mt-20 py-20">
         <div className="mx-auto max-w-6xl space-y-12 px-4 text-center sm:px-6">
           <div className="space-y-4">
@@ -339,7 +334,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing */}
       <section
         id="pricing"
         className="scroll-mt-20 border-y border-stone-200 bg-white py-20"
@@ -395,7 +389,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section id="faq" className="scroll-mt-20 py-20">
         <div className="mx-auto max-w-6xl space-y-12 px-4 text-center sm:px-6">
           <div className="space-y-4">
@@ -418,7 +411,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="border-t border-stone-200 bg-emerald-900 py-20 text-center">
         <div className="mx-auto max-w-3xl space-y-7 px-4">
           <h2 className="text-3xl font-extrabold leading-tight text-white sm:text-4xl">

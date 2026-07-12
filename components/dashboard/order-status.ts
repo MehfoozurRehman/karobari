@@ -8,7 +8,6 @@ export const STATUS_COLORS: Record<string, string> = {
   cancelled: "bg-stone-200 text-stone-600",
 };
 
-/** The forward transitions available from each status (mirrors convex/orders.ts). */
 export const NEXT_STATUS: Record<string, string[]> = {
   pending: ["confirmed", "cancelled"],
   confirmed: ["preparing", "cancelled"],

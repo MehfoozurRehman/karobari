@@ -1,4 +1,3 @@
-/** Derive a URL-safe slug from a business name. */
 export function slugify(name: string): string {
   return name
     .toLowerCase()

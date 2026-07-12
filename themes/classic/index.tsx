@@ -13,7 +13,6 @@ export function ClassicHome({ data, content }: ThemeProps) {
     <div className="min-h-screen bg-[#faf7f2] text-stone-900">
       <StoreHeader name={business.name} accent={ACCENT} />
 
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-black/5 bg-emerald-950 text-white">
         {heroImageUrl && (
           <Image
@@ -40,7 +39,6 @@ export function ClassicHome({ data, content }: ThemeProps) {
         </div>
       </section>
 
-      {/* Info strip */}
       <section className="border-b border-black/5 bg-white">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 py-6 text-sm text-stone-600 sm:grid-cols-3">
           {business.hours && (
@@ -64,12 +62,10 @@ export function ClassicHome({ data, content }: ThemeProps) {
         </div>
       </section>
 
-      {/* Catalog */}
       <section className="mx-auto max-w-5xl px-4 py-12">
         <ItemGrid data={data} accent={ACCENT} />
       </section>
 
-      {/* About + highlights */}
       <section className="border-t border-black/5 bg-white py-14">
         <div className="mx-auto max-w-5xl space-y-10 px-4">
           <div className="mx-auto max-w-2xl text-center">

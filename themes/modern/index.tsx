@@ -13,7 +13,6 @@ export function ModernHome({ data, content }: ThemeProps) {
     <div className="min-h-screen bg-white text-stone-900">
       <StoreHeader name={business.name} accent={ACCENT} />
 
-      {/* Hero */}
       <section className="mx-auto max-w-5xl px-4 pt-10">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 text-white">
           {heroImageUrl && (
@@ -45,7 +44,6 @@ export function ModernHome({ data, content }: ThemeProps) {
         </div>
       </section>
 
-      {/* Highlights */}
       <section className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-4 py-10 sm:grid-cols-3">
         {content.highlights.map((h, i) => (
           <div
@@ -60,7 +58,6 @@ export function ModernHome({ data, content }: ThemeProps) {
         ))}
       </section>
 
-      {/* Catalog */}
       <section className="mx-auto max-w-5xl px-4 pb-14">
         <h2 className="mb-6 text-3xl font-black tracking-tight">
           Shop the Menu
@@ -68,7 +65,6 @@ export function ModernHome({ data, content }: ThemeProps) {
         <ItemGrid data={data} accent={ACCENT} />
       </section>
 
-      {/* About */}
       <section className="bg-stone-950 py-16 text-center text-white">
         <div className="mx-auto max-w-2xl px-4">
           <h2 className="text-2xl font-black">{content.about.title}</h2>

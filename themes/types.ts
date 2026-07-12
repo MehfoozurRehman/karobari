@@ -1,7 +1,6 @@
 import { api } from "@/convex/_generated/api";
 import { FunctionReturnType } from "convex/server";
 
-/** AI-generated (or default) storefront copy, stored in siteContent.content. */
 export type SiteContent = {
   hero: { headline: string; subheadline: string; ctaText: string };
   about: { title: string; body: string };

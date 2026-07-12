@@ -95,7 +95,6 @@ export default function WebsitePage() {
         </div>
       )}
 
-      {/* Theme picker */}
       <Card className="rounded-2xl border-stone-200">
         <CardContent className="space-y-3 p-5">
           <p className="font-bold text-stone-900">Theme</p>
@@ -121,7 +120,6 @@ export default function WebsitePage() {
         </CardContent>
       </Card>
 
-      {/* AI content */}
       <Card className="rounded-2xl border-stone-200">
         <CardContent className="space-y-4 p-5">
           <div className="flex items-center justify-between">
@@ -196,7 +194,6 @@ export default function WebsitePage() {
         </CardContent>
       </Card>
 
-      {/* Hero image */}
       <Card className="rounded-2xl border-stone-200">
         <CardContent className="flex items-center justify-between p-5">
           <div>
@@ -228,7 +225,6 @@ export default function WebsitePage() {
         </CardContent>
       </Card>
 
-      {/* Custom domain — wired in admin/domains phase */}
       <Card className="rounded-2xl border-stone-200">
         <CardContent className="space-y-2 p-5">
           <p className="font-bold text-stone-900">Custom Domain</p>

@@ -11,6 +11,7 @@ import { orderStatus } from "./schema";
 import { requireOwner } from "./lib/access";
 import { normalizePkPhone } from "./lib/phone";
 import { recordCompletedOrder } from "./lib/billing";
+import { startOfTodayPktMs } from "./lib/dates";
 
 const orderItemInput = v.object({
   catalogItemId: v.id("catalogItems"),
@@ -23,7 +24,6 @@ function generateTrackingToken(): string {
     .join("");
 }
 
-/** Shared order creation used by the storefront checkout and the WhatsApp agent. */
 export async function createOrderForBusiness(
   ctx: MutationCtx,
   business: Doc<"businesses">,
@@ -108,7 +108,6 @@ export async function createOrderForBusiness(
   return { orderId, orderNumber, trackingToken };
 }
 
-/** Public storefront checkout. */
 export const createFromStorefront = mutation({
   args: {
     businessId: v.id("businesses"),
@@ -147,7 +146,6 @@ export const createFromStorefront = mutation({
   },
 });
 
-/** Public order tracking by token (no auth). */
 export const trackByToken = query({
   args: { trackingToken: v.string() },
   handler: async (ctx, args) => {
@@ -204,7 +202,6 @@ export const trackByToken = query({
   },
 });
 
-/** Dashboard order list. */
 export const listMine = query({
   args: { status: v.optional(orderStatus) },
   handler: async (ctx, args) => {
@@ -266,7 +263,6 @@ const STATUS_FLOW: Record<string, string[]> = {
   cancelled: [],
 };
 
-/** Shared status transition used by dashboard and the owner WhatsApp agent. */
 export async function transitionOrderStatus(
   ctx: MutationCtx,
   business: Doc<"businesses">,
@@ -282,7 +278,6 @@ export async function transitionOrderStatus(
       status: "completed",
       completedAt: Date.now(),
       billedLedgerEntryId: ledgerEntryId ?? undefined,
-      // COD is implicitly collected on delivery completion.
       paymentStatus:
         order.paymentMethod === "cod" ? "paid" : order.paymentStatus,
     });
@@ -317,7 +312,6 @@ export const markPaid = mutation({
   },
 });
 
-/** Sales stats for the dashboard overview and the owner WhatsApp agent. */
 export const statsInternal = internalQuery({
   args: {
     businessId: v.id("businesses"),
@@ -351,11 +345,7 @@ export const dashboardStats = query({
   args: {},
   handler: async (ctx) => {
     const { business } = await requireOwner(ctx);
-    const startOfDayPkt = (() => {
-      const now = new Date(Date.now() + 5 * 60 * 60 * 1000);
-      now.setUTCHours(0, 0, 0, 0);
-      return now.getTime() - 5 * 60 * 60 * 1000;
-    })();
+    const startOfDayPkt = startOfTodayPktMs();
     const completedToday = await ctx.db
       .query("orders")
       .withIndex("by_businessId_and_completedAt", (q) =>

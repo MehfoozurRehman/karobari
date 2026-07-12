@@ -211,7 +211,6 @@ export default function CatalogPage() {
         </div>
       </div>
 
-      {/* Categories */}
       <div className="flex flex-wrap items-center gap-2">
         {catalog?.categories.map((c) => (
           <span
@@ -257,7 +256,6 @@ export default function CatalogPage() {
         </form>
       </div>
 
-      {/* Items */}
       {catalog === undefined ? (
         <div className="h-64 animate-pulse rounded-2xl bg-stone-200" />
       ) : catalog.items.length === 0 ? (

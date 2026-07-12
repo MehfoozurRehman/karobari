@@ -1,7 +1,6 @@
 import { Doc } from "../_generated/dataModel";
 import { MutationCtx, QueryCtx } from "../_generated/server";
 
-/** Get the current authenticated user document, or null. */
 export async function getCurrentUser(
   ctx: QueryCtx | MutationCtx,
 ): Promise<Doc<"users"> | null> {
@@ -13,7 +12,6 @@ export async function getCurrentUser(
     .unique();
 }
 
-/** Require an authenticated user with a linked business; returns both. */
 export async function requireOwner(ctx: QueryCtx | MutationCtx): Promise<{
   user: Doc<"users">;
   business: Doc<"businesses">;
@@ -26,7 +24,6 @@ export async function requireOwner(ctx: QueryCtx | MutationCtx): Promise<{
   return { user, business };
 }
 
-/** Require the current user to be a platform admin. */
 export async function requireAdmin(
   ctx: QueryCtx | MutationCtx,
 ): Promise<Doc<"users">> {

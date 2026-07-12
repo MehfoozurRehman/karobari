@@ -13,7 +13,6 @@ export function MinimalHome({ data, content }: ThemeProps) {
     <div className="min-h-screen bg-white text-slate-900">
       <StoreHeader name={business.name} accent={ACCENT} />
 
-      {/* Hero */}
       <section className="border-b border-slate-100">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:grid-cols-2 sm:py-24">
           <div>
@@ -51,12 +50,10 @@ export function MinimalHome({ data, content }: ThemeProps) {
         </div>
       </section>
 
-      {/* Catalog */}
       <section className="mx-auto max-w-5xl px-4 py-14">
         <ItemGrid data={data} accent={ACCENT} />
       </section>
 
-      {/* About */}
       <section className="border-t border-slate-100 py-16">
         <div className="mx-auto max-w-xl px-4 text-center">
           <h2 className="text-xl font-bold">{content.about.title}</h2>

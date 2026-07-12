@@ -6,7 +6,6 @@ import { internalQuery } from "./_generated/server";
 
 const GEMINI_IMAGE_MODEL = "gemini-2.5-flash-image";
 
-/** Call the Gemini API to generate one image; returns raw bytes. */
 async function generateImageBytes(prompt: string): Promise<{
   bytes: Uint8Array;
   mimeType: string;
@@ -86,7 +85,6 @@ export const setHeroImageInternal = internalMutation({
   },
 });
 
-/** Generate a professional product photo for a catalog item. */
 export const generateItemImage = action({
   args: {
     itemId: v.id("catalogItems"),
@@ -136,7 +134,6 @@ export const generateItemImage = action({
   },
 });
 
-/** Generate a hero/banner image for the storefront. */
 export const generateHeroImage = action({
   args: { businessId: v.id("businesses") },
   returns: v.null(),

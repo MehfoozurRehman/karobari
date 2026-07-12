@@ -81,7 +81,6 @@ export const saveInternal = internalMutation({
   },
 });
 
-/** Generate storefront copy from the business profile + catalog. */
 export const generate = action({
   args: { businessId: v.optional(v.id("businesses")) },
   returns: v.any(),
@@ -125,7 +124,6 @@ export const ownerBusinessInternal = internalQuery({
   },
 });
 
-/** Shared generator, also used by WhatsApp onboarding after registration. */
 export async function generateSiteContentForBusiness(input: {
   name: string;
   category: string;
