@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Nunito, Geist_Mono } from "next/font/google";
-import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import { Geist, Geist_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+import { ConvexClientProvider } from "@/components/providers/convex-client-provider";
+import { PostHogProvider } from "@/components/providers/posthog-provider";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 const geistMono = Geist_Mono({
@@ -15,8 +17,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Karobari - Mobile-First Business Suite for Pakistan",
-  description: "Create an online storefront and manage orders, payments, and staff over WhatsApp.",
+  title: {
+    default: "Karobari — Apna Karobar Online",
+    template: "%s | Karobari",
+  },
+  description:
+    "Beautiful dynamic websites, auto-generated instantly. Manage your business and customers with a Roman Urdu AI Agent on your own WhatsApp number.",
 };
 
 export default function RootLayout({
@@ -25,14 +31,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${nunito.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-full bg-zinc-950 text-zinc-50 flex flex-col font-sans">
-        <ConvexClientProvider>{children}</ConvexClientProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      >
+        <body className="min-h-full flex flex-col">
+          <ConvexClientProvider>
+            <PostHogProvider>{children}</PostHogProvider>
+          </ConvexClientProvider>
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

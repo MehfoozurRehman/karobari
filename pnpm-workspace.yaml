@@ -1,7 +1,6 @@
-allowBuilds:
-  esbuild: true
-  sharp: true
-  unrs-resolver: true
-ignoredBuiltDependencies:
+onlyBuiltDependencies:
   - sharp
   - unrs-resolver
+  - esbuild
+  - core-js
+  - "@tailwindcss/oxide"
