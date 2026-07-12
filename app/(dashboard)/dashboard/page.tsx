@@ -5,7 +5,6 @@ import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatPaisa } from "@/lib/currency";
-import { Star } from "lucide-react";
 
 export default function DashboardOverview() {
   const { isAuthenticated } = useConvexAuth();

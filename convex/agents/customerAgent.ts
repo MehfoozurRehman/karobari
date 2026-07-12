@@ -4,7 +4,6 @@ import { v } from "convex/values";
 import { z } from "zod";
 import { tool } from "ai";
 import { runAgent } from "./runAgent";
-import type { Id } from "../_generated/dataModel";
 
 export const run = internalAction({
   args: {

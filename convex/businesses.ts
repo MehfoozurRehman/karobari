@@ -1,4 +1,10 @@
-import { internalMutation, internalQuery, mutation, query } from "./_generated/server";
+import {
+  internalMutation,
+  internalQuery,
+  mutation,
+  query,
+  type MutationCtx,
+} from "./_generated/server";
 import { v } from "convex/values";
 import { businessCategory, paymentSettings } from "./schema";
 import { getCurrentUser, requireOwner } from "./lib/access";
@@ -22,7 +28,7 @@ const RESERVED_SLUGS = new Set([
 ]);
 
 export async function allocateSlug(
-  ctx: { db: { query: (t: "businesses") => any } },
+  ctx: MutationCtx,
   name: string,
 ): Promise<string> {
   const base = slugify(name) || "shop";
@@ -31,7 +37,7 @@ export async function allocateSlug(
     if (!RESERVED_SLUGS.has(candidate)) {
       const clash = await ctx.db
         .query("businesses")
-        .withIndex("by_slug", (q: any) => q.eq("slug", candidate))
+        .withIndex("by_slug", (q) => q.eq("slug", candidate))
         .unique();
       if (!clash) return candidate;
     }

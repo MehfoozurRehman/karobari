@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAction, useConvexAuth, useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
@@ -30,13 +30,12 @@ export default function WebsitePage() {
   const generateHero = useAction(api.images.generateHeroImage);
   const saveContent = useMutation(api.siteContentAI.saveMine);
 
-  const [content, setContent] = useState<SiteContent | null>(null);
+  const [draft, setDraft] = useState<SiteContent | null>(null);
   const [generating, setGenerating] = useState(false);
   const [heroBusy, setHeroBusy] = useState(false);
 
-  useEffect(() => {
-    if (site?.content && !content) setContent(site.content as SiteContent);
-  }, [site, content]);
+  const content = draft ?? ((site?.content as SiteContent | undefined) || null);
+  const setContent = setDraft;
 
   const rootDomain = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? "karobari.shop";
 

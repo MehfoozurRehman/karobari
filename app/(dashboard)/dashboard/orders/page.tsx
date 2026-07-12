@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPaisa } from "@/lib/currency";
-import { formatDate, formatDateTime } from "@/lib/dates";
+import { formatDateTime } from "@/lib/dates";
 import { STATUS_COLORS } from "@/components/dashboard/order-status";
 
 const STATUSES = [

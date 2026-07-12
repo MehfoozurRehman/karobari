@@ -1,5 +1,4 @@
 import {
-  internalMutation,
   internalQuery,
   mutation,
   query,

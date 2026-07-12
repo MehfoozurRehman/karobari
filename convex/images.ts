@@ -1,7 +1,6 @@
 import { action, internalMutation } from "./_generated/server";
 import { internal } from "./_generated/api";
 import { v } from "convex/values";
-import { requireOwner } from "./lib/access";
 import { internalQuery } from "./_generated/server";
 
 const GEMINI_IMAGE_MODEL = "gemini-2.5-flash-image";

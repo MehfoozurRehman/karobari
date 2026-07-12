@@ -3,7 +3,7 @@
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { formatPaisa } from "@/lib/currency";
-import { formatDate, formatDateTime } from "@/lib/dates";
+import { formatDate } from "@/lib/dates";
 
 export default function RatingsPage() {
   const { isAuthenticated } = useConvexAuth();
