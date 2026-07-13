@@ -73,7 +73,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-bold text-stone-900">5. Contact</h2>
           <p>
             For any privacy questions or data deletion requests, contact us via
-            the contact page or on WhatsApp at +92 329 0203450.
+            the contact page or on WhatsApp at {process.env.NEXT_PUBLIC_WA_PLATFORM_PHONE_NUMBER || "+92 329 0203450"}.
           </p>
         </section>
       </div>

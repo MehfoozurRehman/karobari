@@ -136,7 +136,7 @@ export default function BillingPage() {
                 {entry.status === "due" && (
                   <div className="rounded-xl bg-amber-50 p-3 text-xs text-amber-800">
                     Pay to Karobari: EasyPaisa / JazzCash{" "}
-                    <strong>0329 0203450</strong> (Karobari) — phir yahan proof
+                    <strong>{process.env.NEXT_PUBLIC_WA_PLATFORM_PHONE_NUMBER?.replace(/\D/g, "").slice(-10) || "03XX XXXXXXX"}</strong> (Karobari) — phir yahan proof
                     submit karein.
                   </div>
                 )}
