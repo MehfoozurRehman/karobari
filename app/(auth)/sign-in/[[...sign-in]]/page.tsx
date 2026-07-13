@@ -5,7 +5,7 @@ export default function SignInPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#faf9f6] p-4">
       <Suspense fallback={null}>
-        <SignIn />
+        <SignIn fallbackRedirectUrl="/dashboard" signUpUrl={`${process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}`} />
       </Suspense>
     </div>
   );

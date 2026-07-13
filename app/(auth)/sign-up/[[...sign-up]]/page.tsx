@@ -1,12 +1,6 @@
-import { Suspense } from "react";
-import { SignUp } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import { waStartBusinessLink } from "@/lib/wa-links";
 
 export default function SignUpPage() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-[#faf9f6] p-4">
-      <Suspense fallback={null}>
-        <SignUp />
-      </Suspense>
-    </div>
-  );
+  redirect(waStartBusinessLink());
 }

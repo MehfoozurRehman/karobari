@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { waStartBusinessLink } from "@/lib/wa-links";
+import { HeaderAuth } from "@/components/marketing/header-auth";
 
 const nav = [
   { href: "/#features", label: "Features" },
@@ -42,14 +43,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/sign-in" className="hidden sm:block">
-            <Button
-              variant="ghost"
-              className="rounded-full px-5 font-semibold text-stone-700"
-            >
-              Sign In
-            </Button>
-          </Link>
+          <HeaderAuth />
           <a href={waStartBusinessLink()} target="_blank" rel="noopener noreferrer">
             <Button className="rounded-full bg-emerald-700 px-5 font-semibold text-white shadow-sm hover:bg-emerald-800">
               Create Store Free
