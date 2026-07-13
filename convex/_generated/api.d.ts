@@ -35,7 +35,7 @@ import type * as paymentsCustomer from "../paymentsCustomer.js";
 import type * as ratings from "../ratings.js";
 import type * as siteContentAI from "../siteContentAI.js";
 import type * as users from "../users.js";
-import type * as whatsapp_embeddedSignup from "../whatsapp/embeddedSignup.js";
+import type * as whatsapp_connect from "../whatsapp/connect.js";
 import type * as whatsapp_media from "../whatsapp/media.js";
 import type * as whatsapp_messagesDb from "../whatsapp/messagesDb.js";
 import type * as whatsapp_send from "../whatsapp/send.js";
@@ -75,7 +75,7 @@ declare const fullApi: ApiFromModules<{
   ratings: typeof ratings;
   siteContentAI: typeof siteContentAI;
   users: typeof users;
-  "whatsapp/embeddedSignup": typeof whatsapp_embeddedSignup;
+  "whatsapp/connect": typeof whatsapp_connect;
   "whatsapp/media": typeof whatsapp_media;
   "whatsapp/messagesDb": typeof whatsapp_messagesDb;
   "whatsapp/send": typeof whatsapp_send;

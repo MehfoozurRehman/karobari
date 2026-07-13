@@ -1,29 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import Script from "next/script";
-import { useAction, useConvexAuth, useQuery } from "convex/react";
+import { useEffect } from "react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { MessageSquare, CheckCircle2 } from "lucide-react";
-
-declare global {
-  interface Window {
-    FB?: {
-      init: (options: Record<string, unknown>) => void;
-      login: (
-        cb: (response: {
-          authResponse?: { code?: string };
-          status?: string;
-        }) => void,
-        options: Record<string, unknown>,
-      ) => void;
-    };
-    fbAsyncInit?: () => void;
-  }
-}
+import { useSearchParams } from "next/navigation";
 
 export default function WhatsappPage() {
   const { isAuthenticated } = useConvexAuth();
@@ -31,95 +15,28 @@ export default function WhatsappPage() {
     api.businesses.getMine,
     isAuthenticated ? {} : "skip",
   );
-  const exchangeCode = useAction(api.whatsapp.embeddedSignup.exchangeCode);
-
-  const [sdkReady, setSdkReady] = useState(false);
-  const [connecting, setConnecting] = useState(false);
-  const sessionInfo = useRef<{ wabaId?: string; phoneNumberId?: string }>({});
-
-  const appId = process.env.NEXT_PUBLIC_META_APP_ID;
-  const configId = process.env.NEXT_PUBLIC_META_CONFIG_ID;
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const listener = (event: MessageEvent) => {
-      if (
-        event.origin !== "https://www.facebook.com" &&
-        event.origin !== "https://web.facebook.com"
-      )
-        return;
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type === "WA_EMBEDDED_SIGNUP" && data.event === "FINISH") {
-          sessionInfo.current = {
-            wabaId: data.data?.waba_id,
-            phoneNumberId: data.data?.phone_number_id,
-          };
-        }
-      } catch {
-        return;
-      }
-    };
-    window.addEventListener("message", listener);
-    return () => window.removeEventListener("message", listener);
-  }, []);
+    const connected = searchParams.get("connected");
+    const error = searchParams.get("error");
 
-  const launchSignup = useCallback(() => {
-    if (!window.FB || !configId) {
-      toast.error("Facebook SDK load nahi hua — page refresh karein");
-      return;
+    if (connected) {
+      toast.success(`WhatsApp connected: ${connected} 🎉`);
     }
-    setConnecting(true);
-    window.FB.login(
-      async (response) => {
-        const code = response.authResponse?.code;
-        if (!code) {
-          setConnecting(false);
-          toast.error("Signup cancel ho gaya");
-          return;
-        }
-        const { wabaId, phoneNumberId } = sessionInfo.current;
-        if (!wabaId || !phoneNumberId) {
-          setConnecting(false);
-          toast.error("WhatsApp account info nahi mili — dobara try karein");
-          return;
-        }
-        try {
-          const result = await exchangeCode({ code, wabaId, phoneNumberId });
-          toast.success(`WhatsApp connected: ${result.displayPhoneNumber} 🎉`);
-        } catch (e) {
-          toast.error(e instanceof Error ? e.message : "Connection failed");
-        } finally {
-          setConnecting(false);
-        }
-      },
-      {
-        config_id: configId,
-        response_type: "code",
-        override_default_response_type: true,
-        extras: { setup: {}, featureType: "", sessionInfoVersion: "3" },
-      },
-    );
-  }, [configId, exchangeCode]);
+    if (error) {
+      toast.error(`Connection failed: ${error}`);
+    }
+  }, [searchParams]);
+
+  const handleConnect = () => {
+    window.location.href = "/api/whatsapp/oauth/start";
+  };
 
   const connected = business?.whatsapp?.status === "connected";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      {appId && (
-        <Script
-          src="https://connect.facebook.net/en_US/sdk.js"
-          strategy="lazyOnload"
-          onLoad={() => {
-            window.FB?.init({
-              appId,
-              autoLogAppEvents: true,
-              xfbml: true,
-              version: "v23.0",
-            });
-            setSdkReady(true);
-          }}
-        />
-      )}
 
       <div>
         <h1 className="text-2xl font-extrabold tracking-tight text-stone-900">
@@ -176,15 +93,10 @@ export default function WhatsappPage() {
             </ul>
 
             <Button
-              onClick={launchSignup}
-              disabled={!sdkReady || connecting || !appId || !configId}
+              onClick={handleConnect}
               className="w-full rounded-full bg-[#25D366] py-6 text-base font-extrabold text-white hover:bg-[#1fb857]"
             >
-              {connecting
-                ? "Connecting..."
-                : !appId || !configId
-                  ? "Setup pending (Meta app config missing)"
-                  : "Connect WhatsApp Number"}
+              Connect WhatsApp Number
             </Button>
           </CardContent>
         </Card>

@@ -22,7 +22,7 @@ Karobari gives Pakistani small businesses (restaurants, hotels, salons, shops) a
 
 1. **WhatsApp-first onboarding** — conversational Roman Urdu flow on the platform number (+92 329 0203450): name → category → description → paste menu (AI-parsed) → wallet numbers → live store + dashboard links.
 2. **AI storefronts** — 3 themes (classic/modern/minimal), AI copy, Gemini-generated product/hero photos, cart, checkout, live order tracking, rating + rider tips.
-3. **Agents on the business's own number** — Meta Embedded Signup OAuth from the dashboard; customer agent (menu, orders, status) and owner agent (sales summaries, order management, price/stock changes, billing status).
+3. **Agents on the business's own number** — Standard OAuth authorization from the dashboard (no Tech Provider approval needed); customer agent (menu, orders, status) and owner agent (sales summaries, order management, price/stock changes, billing status).
 4. **Back office** — orders pipeline, catalog with discounts, payment proof review, employees & salary ledgers, ratings.
 5. **Admin panel** — platform KPIs, business management, invoice ledger, payment-proof review and collection.
 
@@ -75,7 +75,6 @@ Karobari gives Pakistani small businesses (restaurants, hotels, salons, shops) a
 
 | Risk | Mitigation |
 |---|---|
-| Meta Tech Provider / app review delays | Start verification immediately (see MANUAL_STEPS); platform number flow works while per-business Embedded Signup awaits approval |
 | Owners' numbers moving to Cloud API breaks their personal WhatsApp usage | Clear warning in UI + docs; recommend a dedicated business SIM; Meta "coexistence" is on their roadmap |
 | Non-payment of invoices | Product suspension is automatic and reversible; 7-day grace; small amounts keep friction low |
 | AI mistakes (wrong price/order) | Agent can only quote from the catalog; orders require explicit confirmation; owner can cancel |
