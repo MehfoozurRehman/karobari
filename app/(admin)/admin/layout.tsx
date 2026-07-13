@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import { useConvexAuth, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { SyncUser } from "@/components/dashboard/sync-user";
 import { cn } from "@/lib/utils";
 
 const nav = [
@@ -94,7 +93,6 @@ export default function AdminLayout({
 }) {
   return (
     <Suspense fallback={null}>
-      <SyncUser />
       <AdminShell>{children}</AdminShell>
     </Suspense>
   );

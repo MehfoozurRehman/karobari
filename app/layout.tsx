@@ -29,10 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <SyncUser />
       <html lang="en" className={`${nunito.className} h-full antialiased`}>
         <body className="min-h-full flex flex-col">
           <ConvexClientProvider>
+            <SyncUser />
             <PostHogProvider>{children}</PostHogProvider>
           </ConvexClientProvider>
           <Toaster />
