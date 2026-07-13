@@ -42,7 +42,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   return NextResponse.next();
-});
+}, { frontendApiProxy: { enabled: true } });
 
 export const config = {
   matcher: [
