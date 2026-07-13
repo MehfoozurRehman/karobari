@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { PostHogProvider } from "@/components/providers/posthog-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { SyncUser } from "@/components/dashboard/sync-user";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -28,6 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+      <SyncUser />
       <html lang="en" className={`${nunito.className} h-full antialiased`}>
         <body className="min-h-full flex flex-col">
           <ConvexClientProvider>
