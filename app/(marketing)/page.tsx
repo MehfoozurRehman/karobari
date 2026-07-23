@@ -242,12 +242,12 @@ export default function Home() {
                     {
                       name: "Shinwari Tikka",
                       price: "Rs. 450",
-                      img: "/images/shinwari_tikka.png",
+                      img: "/images/shinwari_tikka.webp",
                     },
                     {
                       name: "Shinwari Pulao",
                       price: "Rs. 400",
-                      img: "/images/shinwari_pulao.png",
+                      img: "/images/shinwari_pulao.webp",
                     },
                   ].map((item) => (
                     <div

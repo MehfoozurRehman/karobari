@@ -58,7 +58,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-60 flex-col border-r border-stone-200 bg-white lg:flex">
         <div className="flex h-16 items-center gap-2.5 border-b border-stone-200 px-5">
           <Image
-            src="/karobari_logo.png"
+            src="/karobari_logo.webp"
             alt="Karobari"
             width={30}
             height={30}
@@ -113,7 +113,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-stone-200 bg-white/85 px-4 backdrop-blur-xl sm:px-6">
           <div className="flex items-center gap-3 lg:hidden">
             <Image
-              src="/karobari_logo.png"
+              src="/karobari_logo.webp"
               alt="Karobari"
               width={28}
               height={28}

@@ -18,7 +18,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/karobari_logo.png"
+            src="/karobari_logo.webp"
             alt="Karobari"
             width={34}
             height={34}
