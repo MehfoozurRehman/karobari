@@ -1,5 +1,5 @@
-import { api } from "@/convex/_generated/api";
-import { FunctionReturnType } from "convex/server";
+import { api } from '@/convex/_generated/api';
+import { FunctionReturnType } from 'convex/server';
 
 export type SiteContent = {
   hero: { headline: string; subheadline: string; ctaText: string };
@@ -8,9 +8,7 @@ export type SiteContent = {
   seo: { title: string; description: string };
 };
 
-export type StoreData = NonNullable<
-  FunctionReturnType<typeof api.businesses.getByTenant>
->;
+export type StoreData = NonNullable<FunctionReturnType<typeof api.businesses.getByTenant>>;
 
 export type ThemeProps = {
   data: StoreData;
@@ -22,13 +20,13 @@ export function defaultSiteContent(businessName: string, description: string): S
     hero: {
       headline: businessName,
       subheadline: description,
-      ctaText: "Order Now",
+      ctaText: 'Order Now',
     },
     about: { title: `About ${businessName}`, body: description },
     highlights: [
-      { title: "Fresh & Quality", text: "Hamesha taaza aur behtareen quality." },
-      { title: "Fast Service", text: "Jaldi delivery aur turant jawab." },
-      { title: "Order on WhatsApp", text: "WhatsApp par seedha order karein." },
+      { title: 'Fresh & Quality', text: 'Hamesha taaza aur behtareen quality.' },
+      { title: 'Fast Service', text: 'Jaldi delivery aur turant jawab.' },
+      { title: 'Order on WhatsApp', text: 'WhatsApp par seedha order karein.' },
     ],
     seo: { title: businessName, description },
   };

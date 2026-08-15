@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 export type CartLine = {
   itemId: string;
@@ -15,7 +15,7 @@ type CartState = {
   tenant: string | null;
   lines: CartLine[];
   setTenant: (tenant: string) => void;
-  add: (line: Omit<CartLine, "qty">) => void;
+  add: (line: Omit<CartLine, 'qty'>) => void;
   setQty: (itemId: string, qty: number) => void;
   remove: (itemId: string) => void;
   clear: () => void;
@@ -34,21 +34,14 @@ export const useCart = create<CartState>()(
           const existing = state.lines.find((l) => l.itemId === line.itemId);
           if (existing) {
             return {
-              lines: state.lines.map((l) =>
-                l.itemId === line.itemId ? { ...l, qty: l.qty + 1 } : l,
-              ),
+              lines: state.lines.map((l) => (l.itemId === line.itemId ? { ...l, qty: l.qty + 1 } : l)),
             };
           }
           return { lines: [...state.lines, { ...line, qty: 1 }] };
         }),
       setQty: (itemId, qty) =>
         set((state) => ({
-          lines:
-            qty <= 0
-              ? state.lines.filter((l) => l.itemId !== itemId)
-              : state.lines.map((l) =>
-                  l.itemId === itemId ? { ...l, qty } : l,
-                ),
+          lines: qty <= 0 ? state.lines.filter((l) => l.itemId !== itemId) : state.lines.map((l) => (l.itemId === itemId ? { ...l, qty } : l)),
         })),
       remove: (itemId) =>
         set((state) => ({
@@ -56,7 +49,7 @@ export const useCart = create<CartState>()(
         })),
       clear: () => set({ lines: [] }),
     }),
-    { name: "karobari-cart" },
+    { name: 'karobari-cart' },
   ),
 );
 

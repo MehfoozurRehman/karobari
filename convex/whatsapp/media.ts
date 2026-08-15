@@ -1,12 +1,9 @@
-import type { ActionCtx } from "../_generated/server";
-import type { Id } from "../_generated/dataModel";
+import type { ActionCtx } from '../_generated/server';
+import type { Id } from '../_generated/dataModel';
 
-const GRAPH_BASE = "https://graph.facebook.com/v23.0";
+const GRAPH_BASE = 'https://graph.facebook.com/v23.0';
 
-export async function storeInboundMedia(
-  ctx: ActionCtx,
-  args: { mediaId: string; accessToken: string },
-): Promise<Id<"_storage"> | null> {
+export async function storeInboundMedia(ctx: ActionCtx, args: { mediaId: string; accessToken: string }): Promise<Id<'_storage'> | null> {
   try {
     const metaRes = await fetch(`${GRAPH_BASE}/${args.mediaId}`, {
       headers: { Authorization: `Bearer ${args.accessToken}` },

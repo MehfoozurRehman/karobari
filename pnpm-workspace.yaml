@@ -8,4 +8,4 @@ onlyBuiltDependencies:
   - unrs-resolver
   - esbuild
   - core-js
-  - "@tailwindcss/oxide"
+  - '@tailwindcss/oxide'

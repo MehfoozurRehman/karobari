@@ -1,15 +1,15 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { waStartBusinessLink } from "@/lib/wa-links";
-import { HeaderAuth } from "@/components/marketing/header-auth";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { waStartBusinessLink } from '@/lib/wa-links';
+import { HeaderAuth } from '@/components/marketing/header-auth';
 
 const nav = [
-  { href: "/#features", label: "Features" },
-  { href: "/#whatsapp", label: "WhatsApp Agent" },
-  { href: "/#pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: '/#features', label: 'Features' },
+  { href: '/#whatsapp', label: 'WhatsApp Agent' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function SiteHeader() {
@@ -17,14 +17,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-stone-200/70 bg-[#faf9f6]/85 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/karobari_logo.webp"
-            alt="Karobari"
-            width={34}
-            height={34}
-            priority
-            className="rounded-lg object-contain"
-          />
+          <Image src="/karobari_logo.webp" alt="Karobari" width={34} height={34} priority className="rounded-lg object-contain" />
           <span className="text-xl font-extrabold tracking-tight text-stone-900">
             Karobari<span className="text-emerald-600">.</span>
           </span>
@@ -32,11 +25,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-7 text-sm font-medium text-stone-600 md:flex">
           {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-emerald-700"
-            >
+            <Link key={item.href} href={item.href} className="transition-colors hover:text-emerald-700">
               {item.label}
             </Link>
           ))}
@@ -45,9 +34,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <HeaderAuth />
           <a href={waStartBusinessLink()} target="_blank" rel="noopener noreferrer">
-            <Button className="rounded-full bg-emerald-700 px-5 font-semibold text-white shadow-sm hover:bg-emerald-800">
-              Create Store Free
-            </Button>
+            <Button className="rounded-full bg-emerald-700 px-5 font-semibold text-white shadow-sm hover:bg-emerald-800">Create Store Free</Button>
           </a>
         </div>
       </div>

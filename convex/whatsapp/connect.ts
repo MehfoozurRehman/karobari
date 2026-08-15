@@ -1,7 +1,7 @@
-import { mutation } from "../_generated/server";
+import { mutation } from '../_generated/server';
 
-import { requireOwner } from "../lib/access";
-import { v } from "convex/values";
+import { requireOwner } from '../lib/access';
+import { v } from 'convex/values';
 
 export const saveBusinessAccount = mutation({
   args: {
@@ -15,8 +15,8 @@ export const saveBusinessAccount = mutation({
   handler: async (ctx, args) => {
     const { business } = await requireOwner(ctx);
     const existing = await ctx.db
-      .query("whatsappAccounts")
-      .withIndex("by_businessId", (q) => q.eq("businessId", business._id))
+      .query('whatsappAccounts')
+      .withIndex('by_businessId', (q) => q.eq('businessId', business._id))
       .first();
     const doc = {
       businessId: business._id,
@@ -25,13 +25,13 @@ export const saveBusinessAccount = mutation({
       displayPhoneNumber: args.displayPhoneNumber,
       accessToken: args.accessToken,
       pin: args.pin,
-      status: "connected" as const,
+      status: 'connected' as const,
       connectedAt: Date.now(),
     };
     if (existing) {
-      await ctx.db.replace("whatsappAccounts", existing._id, doc);
+      await ctx.db.replace('whatsappAccounts', existing._id, doc);
     } else {
-      await ctx.db.insert("whatsappAccounts", doc);
+      await ctx.db.insert('whatsappAccounts', doc);
     }
     return null;
   },

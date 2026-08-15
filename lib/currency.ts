@@ -1,6 +1,6 @@
 export function formatPaisa(paisa: number): string {
   const rupees = Math.round(paisa) / 100;
-  return `Rs. ${rupees.toLocaleString("en-PK", {
+  return `Rs. ${rupees.toLocaleString('en-PK', {
     maximumFractionDigits: rupees % 1 === 0 ? 0 : 2,
   })}`;
 }

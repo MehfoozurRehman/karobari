@@ -1,8 +1,8 @@
-import { action } from "./_generated/server";
-import { v } from "convex/values";
-import { generateObject } from "ai";
-import { openai } from "@ai-sdk/openai";
-import { z } from "zod";
+import { action } from './_generated/server';
+import { v } from 'convex/values';
+import { generateObject } from 'ai';
+import { openai } from '@ai-sdk/openai';
+import { z } from 'zod';
 
 const catalogSchema = z.object({
   categories: z.array(
@@ -11,15 +11,9 @@ const catalogSchema = z.object({
       items: z.array(
         z.object({
           name: z.string(),
-          description: z
-            .string()
-            .optional()
-            .describe("Short description if present in the text"),
-          priceRupees: z.number().describe("Price in Pakistani rupees"),
-          discountPct: z
-            .number()
-            .optional()
-            .describe("Discount percentage if mentioned"),
+          description: z.string().optional().describe('Short description if present in the text'),
+          priceRupees: z.number().describe('Price in Pakistani rupees'),
+          discountPct: z.number().optional().describe('Discount percentage if mentioned'),
         }),
       ),
     }),
@@ -45,31 +39,29 @@ export const importFromText = action({
   }),
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    if (!identity) throw new Error('Not authenticated');
     return await parseCatalogText(args.text);
   },
 });
 
 export async function parseCatalogText(text: string) {
   const { object } = await generateObject({
-    model: openai("gpt-5-mini"),
+    model: openai('gpt-5-mini'),
     schema: catalogSchema,
     system:
       "You convert a Pakistani small business's pasted product/menu list into a structured catalog. " +
-      "The text may be in English, Urdu script, or Roman Urdu, in any messy format. " +
+      'The text may be in English, Urdu script, or Roman Urdu, in any messy format. ' +
       "Rules: prices are in Pakistani rupees (interpret '450', 'Rs. 450', '450 rs' all as 450). " +
       "If an item has variants with different prices (e.g. 'full 400, half 250'), create separate items " +
       "like 'Shinwari Pulao (Full)' and 'Shinwari Pulao (Half)'. " +
-      "Group items under the categories given in the text; if none, use one category with an empty name. " +
-      "Never invent items or prices that are not in the text. Skip lines without a price.",
+      'Group items under the categories given in the text; if none, use one category with an empty name. ' +
+      'Never invent items or prices that are not in the text. Skip lines without a price.',
     prompt: text,
   });
   const categories = object.categories
     .map((c) => ({
       ...c,
-      items: c.items.filter(
-        (i) => Number.isFinite(i.priceRupees) && i.priceRupees > 0,
-      ),
+      items: c.items.filter((i) => Number.isFinite(i.priceRupees) && i.priceRupees > 0),
     }))
     .filter((c) => c.items.length > 0);
   return { categories };

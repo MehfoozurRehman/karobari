@@ -1,12 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
   reactCompiler: true,
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "*.convex.cloud" },
-      { protocol: "http", hostname: "127.0.0.1" },
+      { protocol: 'https', hostname: '*.convex.cloud' },
+      { protocol: 'http', hostname: '127.0.0.1' },
     ],
   },
 };
