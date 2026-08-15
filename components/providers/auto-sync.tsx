@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useUser } from "@clerk/nextjs";
-import { useConvexAuth, useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useEffect } from 'react';
+import { useUser } from '@clerk/nextjs';
+import { useConvexAuth, useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 export function AutoSync() {
   const { user } = useUser();

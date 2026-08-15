@@ -1,48 +1,48 @@
-import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
-import { Doc, Id } from "./_generated/dataModel";
-import type { MutationCtx } from "./_generated/server";
-import { orderStatus } from "./schema";
-import { requireOwner } from "./lib/access";
-import { normalizePkPhone } from "./lib/phone";
-import { recordCompletedOrder } from "./lib/billing";
-import { startOfTodayPktMs } from "./lib/dates";
+import { mutation, query } from './_generated/server';
+import { v } from 'convex/values';
+import { Doc, Id } from './_generated/dataModel';
+import type { MutationCtx } from './_generated/server';
+import { orderStatus } from './schema';
+import { requireOwner } from './lib/access';
+import { normalizePkPhone } from './lib/phone';
+import { recordCompletedOrder } from './lib/billing';
+import { startOfTodayPktMs } from './lib/dates';
 
 const orderItemInput = v.object({
-  catalogItemId: v.id("catalogItems"),
+  catalogItemId: v.id('catalogItems'),
   qty: v.number(),
 });
 
 function generateTrackingToken(): string {
   return Array.from(crypto.getRandomValues(new Uint8Array(16)))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 export async function createOrderForBusiness(
   ctx: MutationCtx,
-  business: Doc<"businesses">,
+  business: Doc<'businesses'>,
   args: {
     customerPhone: string;
     customerName?: string;
     customerAddress?: string;
     note?: string;
-    source: "storefront" | "whatsapp";
-    paymentMethod: "cod" | "easypaisa" | "jazzcash";
-    items: Array<{ catalogItemId: Id<"catalogItems">; qty: number }>;
+    source: 'storefront' | 'whatsapp';
+    paymentMethod: 'cod' | 'easypaisa' | 'jazzcash';
+    items: Array<{ catalogItemId: Id<'catalogItems'>; qty: number }>;
   },
-): Promise<{ orderId: Id<"orders">; orderNumber: number; trackingToken: string }> {
-  if (business.status === "suspended") {
-    throw new Error("This business is currently unavailable");
+): Promise<{ orderId: Id<'orders'>; orderNumber: number; trackingToken: string }> {
+  if (business.status === 'suspended') {
+    throw new Error('This business is currently unavailable');
   }
   const phone = normalizePkPhone(args.customerPhone);
-  if (!phone) throw new Error("Invalid Pakistani phone number");
-  if (args.items.length === 0) throw new Error("Order has no items");
+  if (!phone) throw new Error('Invalid Pakistani phone number');
+  if (args.items.length === 0) throw new Error('Order has no items');
 
   let subtotal = 0;
   let discount = 0;
   const lines: Array<{
-    catalogItemId: Id<"catalogItems">;
+    catalogItemId: Id<'catalogItems'>;
     nameSnapshot: string;
     unitPricePaisa: number;
     qty: number;
@@ -51,15 +51,13 @@ export async function createOrderForBusiness(
 
   for (const line of args.items) {
     if (!Number.isInteger(line.qty) || line.qty < 1 || line.qty > 99) {
-      throw new Error("Invalid quantity");
+      throw new Error('Invalid quantity');
     }
-    const item = await ctx.db.get("catalogItems", line.catalogItemId);
+    const item = await ctx.db.get('catalogItems', line.catalogItemId);
     if (!item || item.businessId !== business._id || !item.available) {
-      throw new Error("An item in your cart is no longer available");
+      throw new Error('An item in your cart is no longer available');
     }
-    const effectivePrice = item.discountPct
-      ? Math.round(item.pricePaisa * (1 - item.discountPct / 100))
-      : item.pricePaisa;
+    const effectivePrice = item.discountPct ? Math.round(item.pricePaisa * (1 - item.discountPct / 100)) : item.pricePaisa;
     subtotal += item.pricePaisa * line.qty;
     discount += (item.pricePaisa - effectivePrice) * line.qty;
     lines.push({
@@ -72,12 +70,12 @@ export async function createOrderForBusiness(
   }
 
   const orderNumber = business.nextOrderNumber;
-  await ctx.db.patch("businesses", business._id, {
+  await ctx.db.patch('businesses', business._id, {
     nextOrderNumber: orderNumber + 1,
   });
 
   const trackingToken = generateTrackingToken();
-  const orderId = await ctx.db.insert("orders", {
+  const orderId = await ctx.db.insert('orders', {
     businessId: business._id,
     orderNumber,
     customerPhone: phone,
@@ -85,16 +83,16 @@ export async function createOrderForBusiness(
     customerAddress: args.customerAddress,
     note: args.note,
     source: args.source,
-    status: "pending",
+    status: 'pending',
     paymentMethod: args.paymentMethod,
-    paymentStatus: "unpaid",
+    paymentStatus: 'unpaid',
     subtotalPaisa: subtotal,
     discountPaisa: discount,
     totalPaisa: subtotal - discount,
     trackingToken,
   });
   for (const line of lines) {
-    await ctx.db.insert("orderItems", {
+    await ctx.db.insert('orderItems', {
       orderId,
       businessId: business._id,
       ...line,
@@ -105,16 +103,12 @@ export async function createOrderForBusiness(
 
 export const createFromStorefront = mutation({
   args: {
-    businessId: v.id("businesses"),
+    businessId: v.id('businesses'),
     customerPhone: v.string(),
     customerName: v.string(),
     customerAddress: v.string(),
     note: v.optional(v.string()),
-    paymentMethod: v.union(
-      v.literal("cod"),
-      v.literal("easypaisa"),
-      v.literal("jazzcash"),
-    ),
+    paymentMethod: v.union(v.literal('cod'), v.literal('easypaisa'), v.literal('jazzcash')),
     items: v.array(orderItemInput),
   },
   returns: v.object({
@@ -122,17 +116,14 @@ export const createFromStorefront = mutation({
     trackingToken: v.string(),
   }),
   handler: async (ctx, args) => {
-    const business = await ctx.db.get("businesses", args.businessId);
-    if (!business) throw new Error("Business not found");
-    if (
-      args.paymentMethod === "cod" &&
-      !business.paymentSettings.codEnabled
-    ) {
-      throw new Error("Cash on delivery is not available for this shop");
+    const business = await ctx.db.get('businesses', args.businessId);
+    if (!business) throw new Error('Business not found');
+    if (args.paymentMethod === 'cod' && !business.paymentSettings.codEnabled) {
+      throw new Error('Cash on delivery is not available for this shop');
     }
     const result = await createOrderForBusiness(ctx, business, {
       ...args,
-      source: "storefront",
+      source: 'storefront',
     });
     return {
       orderNumber: result.orderNumber,
@@ -145,24 +136,22 @@ export const trackByToken = query({
   args: { trackingToken: v.string() },
   handler: async (ctx, args) => {
     const order = await ctx.db
-      .query("orders")
-      .withIndex("by_trackingToken", (q) =>
-        q.eq("trackingToken", args.trackingToken),
-      )
+      .query('orders')
+      .withIndex('by_trackingToken', (q) => q.eq('trackingToken', args.trackingToken))
       .unique();
     if (!order) return null;
-    const business = await ctx.db.get("businesses", order.businessId);
+    const business = await ctx.db.get('businesses', order.businessId);
     const items = await ctx.db
-      .query("orderItems")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('orderItems')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .take(100);
     const rating = await ctx.db
-      .query("ratings")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('ratings')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .unique();
     const proof = await ctx.db
-      .query("paymentProofs")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('paymentProofs')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .first();
     return {
       order: {
@@ -203,106 +192,94 @@ export const listMine = query({
     const { business } = await requireOwner(ctx);
     const orders = args.status
       ? await ctx.db
-          .query("orders")
-          .withIndex("by_businessId_and_status", (q) =>
-            q.eq("businessId", business._id).eq("status", args.status!),
-          )
-          .order("desc")
+          .query('orders')
+          .withIndex('by_businessId_and_status', (q) => q.eq('businessId', business._id).eq('status', args.status!))
+          .order('desc')
           .take(200)
       : await ctx.db
-          .query("orders")
-          .withIndex("by_businessId", (q) => q.eq("businessId", business._id))
-          .order("desc")
+          .query('orders')
+          .withIndex('by_businessId', (q) => q.eq('businessId', business._id))
+          .order('desc')
           .take(200);
     return orders;
   },
 });
 
 export const getMineById = query({
-  args: { orderId: v.id("orders") },
+  args: { orderId: v.id('orders') },
   handler: async (ctx, args) => {
     const { business } = await requireOwner(ctx);
-    const order = await ctx.db.get("orders", args.orderId);
+    const order = await ctx.db.get('orders', args.orderId);
     if (!order || order.businessId !== business._id) return null;
     const items = await ctx.db
-      .query("orderItems")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('orderItems')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .take(100);
     const proofs = await ctx.db
-      .query("paymentProofs")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('paymentProofs')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .take(10);
     const proofsWithUrls = await Promise.all(
       proofs.map(async (p) => ({
         ...p,
-        screenshotUrl: p.screenshotStorageId
-          ? await ctx.storage.getUrl(p.screenshotStorageId)
-          : null,
+        screenshotUrl: p.screenshotStorageId ? await ctx.storage.getUrl(p.screenshotStorageId) : null,
       })),
     );
     const rating = await ctx.db
-      .query("ratings")
-      .withIndex("by_orderId", (q) => q.eq("orderId", order._id))
+      .query('ratings')
+      .withIndex('by_orderId', (q) => q.eq('orderId', order._id))
       .unique();
     return { order, items, proofs: proofsWithUrls, rating };
   },
 });
 
 const STATUS_FLOW: Record<string, string[]> = {
-  pending: ["confirmed", "cancelled"],
-  confirmed: ["preparing", "cancelled"],
-  preparing: ["ready", "cancelled"],
-  ready: ["delivered", "cancelled"],
-  delivered: ["completed"],
+  pending: ['confirmed', 'cancelled'],
+  confirmed: ['preparing', 'cancelled'],
+  preparing: ['ready', 'cancelled'],
+  ready: ['delivered', 'cancelled'],
+  delivered: ['completed'],
   completed: [],
   cancelled: [],
 };
 
-export async function transitionOrderStatus(
-  ctx: MutationCtx,
-  business: Doc<"businesses">,
-  order: Doc<"orders">,
-  next: Doc<"orders">["status"],
-): Promise<void> {
+export async function transitionOrderStatus(ctx: MutationCtx, business: Doc<'businesses'>, order: Doc<'orders'>, next: Doc<'orders'>['status']): Promise<void> {
   if (!STATUS_FLOW[order.status]?.includes(next)) {
     throw new Error(`Cannot move order from ${order.status} to ${next}`);
   }
-  if (next === "completed") {
+  if (next === 'completed') {
     const ledgerEntryId = await recordCompletedOrder(ctx, business, order);
-    await ctx.db.patch("orders", order._id, {
-      status: "completed",
+    await ctx.db.patch('orders', order._id, {
+      status: 'completed',
       completedAt: Date.now(),
       billedLedgerEntryId: ledgerEntryId ?? undefined,
-      paymentStatus:
-        order.paymentMethod === "cod" ? "paid" : order.paymentStatus,
+      paymentStatus: order.paymentMethod === 'cod' ? 'paid' : order.paymentStatus,
     });
     return;
   }
-  await ctx.db.patch("orders", order._id, { status: next });
+  await ctx.db.patch('orders', order._id, { status: next });
 }
 
 export const updateStatus = mutation({
-  args: { orderId: v.id("orders"), status: orderStatus },
+  args: { orderId: v.id('orders'), status: orderStatus },
   returns: v.null(),
   handler: async (ctx, args) => {
     const { business } = await requireOwner(ctx);
-    const order = await ctx.db.get("orders", args.orderId);
-    if (!order || order.businessId !== business._id)
-      throw new Error("Order not found");
+    const order = await ctx.db.get('orders', args.orderId);
+    if (!order || order.businessId !== business._id) throw new Error('Order not found');
     await transitionOrderStatus(ctx, business, order, args.status);
     return null;
   },
 });
 
 export const markPaid = mutation({
-  args: { orderId: v.id("orders") },
+  args: { orderId: v.id('orders') },
   returns: v.null(),
   handler: async (ctx, args) => {
     const { business } = await requireOwner(ctx);
-    const order = await ctx.db.get("orders", args.orderId);
-    if (!order || order.businessId !== business._id)
-      throw new Error("Order not found");
-    await ctx.db.patch("orders", args.orderId, { paymentStatus: "paid" });
+    const order = await ctx.db.get('orders', args.orderId);
+    if (!order || order.businessId !== business._id) throw new Error('Order not found');
+    await ctx.db.patch('orders', args.orderId, { paymentStatus: 'paid' });
     return null;
   },
 });
@@ -313,26 +290,19 @@ export const dashboardStats = query({
     const { business } = await requireOwner(ctx);
     const startOfDayPkt = startOfTodayPktMs();
     const completedToday = await ctx.db
-      .query("orders")
-      .withIndex("by_businessId_and_completedAt", (q) =>
-        q.eq("businessId", business._id).gte("completedAt", startOfDayPkt),
-      )
+      .query('orders')
+      .withIndex('by_businessId_and_completedAt', (q) => q.eq('businessId', business._id).gte('completedAt', startOfDayPkt))
       .take(500);
     const pending = await ctx.db
-      .query("orders")
-      .withIndex("by_businessId_and_status", (q) =>
-        q.eq("businessId", business._id).eq("status", "pending"),
-      )
+      .query('orders')
+      .withIndex('by_businessId_and_status', (q) => q.eq('businessId', business._id).eq('status', 'pending'))
       .take(100);
     const ratings = await ctx.db
-      .query("ratings")
-      .withIndex("by_businessId", (q) => q.eq("businessId", business._id))
-      .order("desc")
+      .query('ratings')
+      .withIndex('by_businessId', (q) => q.eq('businessId', business._id))
+      .order('desc')
       .take(100);
-    const avgRating =
-      ratings.length > 0
-        ? ratings.reduce((s, r) => s + r.stars, 0) / ratings.length
-        : null;
+    const avgRating = ratings.length > 0 ? ratings.reduce((s, r) => s + r.stars, 0) / ratings.length : null;
     return {
       todayRevenuePaisa: completedToday.reduce((s, o) => s + o.totalPaisa, 0),
       todayCompleted: completedToday.length,

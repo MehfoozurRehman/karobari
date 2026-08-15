@@ -57,6 +57,7 @@ Karobari gives Pakistani small businesses (restaurants, hotels, salons, shops) a
 **Now (MVP, this codebase)** — everything above.
 
 **Next 3–6 months**
+
 - Template messages (paid) for proactive order-status pushes once revenue covers it.
 - Urdu-script agent option; voice-note understanding (Whisper).
 - Delivery-rider assignment + rider WhatsApp notifications.
@@ -65,6 +66,7 @@ Karobari gives Pakistani small businesses (restaurants, hotels, salons, shops) a
 - POS-lite: dine-in QR menus for restaurants.
 
 **6–18 months**
+
 - Inventory with stock counts and low-stock owner alerts.
 - Khata (credit ledger) for regular customers — huge in PK retail.
 - Financing/working-capital referrals based on verified order history.
@@ -73,13 +75,13 @@ Karobari gives Pakistani small businesses (restaurants, hotels, salons, shops) a
 
 ## 8. Risks & Mitigations
 
-| Risk | Mitigation |
-|---|---|
+| Risk                                                                     | Mitigation                                                                                             |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | Owners' numbers moving to Cloud API breaks their personal WhatsApp usage | Clear warning in UI + docs; recommend a dedicated business SIM; Meta "coexistence" is on their roadmap |
-| Non-payment of invoices | Product suspension is automatic and reversible; 7-day grace; small amounts keep friction low |
-| AI mistakes (wrong price/order) | Agent can only quote from the catalog; orders require explicit confirmation; owner can cancel |
-| Free-tier abuse (re-registering) | Phone-number keyed; one business per number; admin panel visibility |
-| Rupee cost of AI rising | gpt-5-mini class models are cheap and falling; can switch providers behind one module |
+| Non-payment of invoices                                                  | Product suspension is automatic and reversible; 7-day grace; small amounts keep friction low           |
+| AI mistakes (wrong price/order)                                          | Agent can only quote from the catalog; orders require explicit confirmation; owner can cancel          |
+| Free-tier abuse (re-registering)                                         | Phone-number keyed; one business per number; admin panel visibility                                    |
+| Rupee cost of AI rising                                                  | gpt-5-mini class models are cheap and falling; can switch providers behind one module                  |
 
 ## 9. KPIs
 

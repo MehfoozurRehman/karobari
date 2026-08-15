@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useCart } from "@/components/storefront/cart-store";
-import { toast } from "sonner";
+import { useCart } from '@/components/storefront/cart-store';
+import { toast } from 'sonner';
 
 export function AddToCartButton({
   itemId,
   name,
   unitPricePaisa,
   imageUrl,
-  accent = "#047857",
+  accent = '#047857',
   disabled,
 }: {
   itemId: string;
@@ -29,7 +29,7 @@ export function AddToCartButton({
       className="rounded-full px-4 py-1.5 text-xs font-bold text-white transition-transform active:scale-95 disabled:opacity-40"
       style={{ backgroundColor: accent }}
     >
-      {disabled ? "Unavailable" : "Add +"}
+      {disabled ? 'Unavailable' : 'Add +'}
     </button>
   );
 }

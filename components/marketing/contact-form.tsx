@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
+import { useState } from 'react';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from 'sonner';
 
 export function ContactForm() {
   const submit = useMutation(api.contact.submit);
@@ -21,16 +21,16 @@ export function ContactForm() {
     setSending(true);
     try {
       await submit({
-        name: String(data.get("name") ?? ""),
-        email: String(data.get("email") ?? ""),
-        phone: String(data.get("phone") ?? "") || undefined,
-        businessName: String(data.get("businessName") ?? "") || undefined,
-        message: String(data.get("message") ?? ""),
+        name: String(data.get('name') ?? ''),
+        email: String(data.get('email') ?? ''),
+        phone: String(data.get('phone') ?? '') || undefined,
+        businessName: String(data.get('businessName') ?? '') || undefined,
+        message: String(data.get('message') ?? ''),
       });
       setSent(true);
       form.reset();
     } catch {
-      toast.error("Message send nahi hui — dobara koshish karein.");
+      toast.error('Message send nahi hui — dobara koshish karein.');
     } finally {
       setSending(false);
     }
@@ -40,10 +40,7 @@ export function ContactForm() {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
         <p className="text-lg font-bold text-emerald-800">Shukriya!</p>
-        <p className="mt-2 text-sm text-emerald-700">
-          Aap ka message mil gaya hai. Hum jald hi aap se raabta karenge —
-          usually 24 ghanton ke andar.
-        </p>
+        <p className="mt-2 text-sm text-emerald-700">Aap ka message mil gaya hai. Hum jald hi aap se raabta karenge — usually 24 ghanton ke andar.</p>
       </div>
     );
   }
@@ -57,13 +54,7 @@ export function ContactForm() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            required
-            placeholder="you@example.com"
-          />
+          <Input id="email" name="email" type="email" required placeholder="you@example.com" />
         </div>
         <div className="space-y-2">
           <Label htmlFor="phone">WhatsApp Number</Label>
@@ -76,20 +67,10 @@ export function ContactForm() {
       </div>
       <div className="space-y-2">
         <Label htmlFor="message">Message</Label>
-        <Textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          placeholder="Hum aap ki kaise madad kar sakte hain?"
-        />
+        <Textarea id="message" name="message" required rows={5} placeholder="Hum aap ki kaise madad kar sakte hain?" />
       </div>
-      <Button
-        type="submit"
-        disabled={sending}
-        className="rounded-full bg-emerald-700 px-8 font-semibold text-white hover:bg-emerald-800"
-      >
-        {sending ? "Sending..." : "Send Message"}
+      <Button type="submit" disabled={sending} className="rounded-full bg-emerald-700 px-8 font-semibold text-white hover:bg-emerald-800">
+        {sending ? 'Sending...' : 'Send Message'}
       </Button>
     </form>
   );

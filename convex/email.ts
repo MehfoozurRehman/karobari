@@ -1,51 +1,45 @@
-import { internalAction, internalQuery } from "./_generated/server";
-import { internal } from "./_generated/api";
-import { v } from "convex/values";
-import type { Doc } from "./_generated/dataModel";
+import { internalAction, internalQuery } from './_generated/server';
+import { internal } from './_generated/api';
+import { v } from 'convex/values';
+import type { Doc } from './_generated/dataModel';
 
-const FROM = "Karobari <billing@karobari.shop>";
+const FROM = 'Karobari <billing@karobari.shop>';
 
 async function sendEmail(to: string, subject: string, html: string) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) return;
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
+  await fetch('https://api.resend.com/emails', {
+    method: 'POST',
     headers: {
       Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ from: FROM, to, subject, html }),
   });
 }
 
 export const ownerEmailInternal = internalQuery({
-  args: { businessId: v.id("businesses") },
+  args: { businessId: v.id('businesses') },
   handler: async (ctx, args): Promise<string | null> => {
-    const business = await ctx.db.get("businesses", args.businessId);
+    const business = await ctx.db.get('businesses', args.businessId);
     if (!business?.ownerUserId) return null;
-    const user = await ctx.db.get("users", business.ownerUserId);
+    const user = await ctx.db.get('users', business.ownerUserId);
     return user?.email ?? null;
   },
 });
 
 export const sendInvoiceEmail = internalAction({
   args: {
-    businessId: v.id("businesses"),
+    businessId: v.id('businesses'),
     period: v.string(),
     amountPaisa: v.number(),
   },
   returns: v.null(),
   handler: async (ctx, args) => {
-    const email: string | null = await ctx.runQuery(
-      internal.email.ownerEmailInternal,
-      { businessId: args.businessId },
-    );
-    const business: Doc<"businesses"> | null = await ctx.runQuery(
-      internal.businesses.getInternal,
-      { businessId: args.businessId },
-    );
+    const email: string | null = await ctx.runQuery(internal.email.ownerEmailInternal, { businessId: args.businessId });
+    const business: Doc<'businesses'> | null = await ctx.runQuery(internal.businesses.getInternal, { businessId: args.businessId });
     if (!email || !business) return null;
-    const amount = `Rs. ${Math.round(args.amountPaisa / 100).toLocaleString("en-PK")}`;
+    const amount = `Rs. ${Math.round(args.amountPaisa / 100).toLocaleString('en-PK')}`;
     await sendEmail(
       email,
       `Karobari invoice for ${args.period} — ${amount}`,
@@ -61,22 +55,16 @@ export const sendInvoiceEmail = internalAction({
 
 export const sendSuspensionEmail = internalAction({
   args: {
-    businessId: v.id("businesses"),
+    businessId: v.id('businesses'),
     period: v.string(),
     amountPaisa: v.number(),
   },
   returns: v.null(),
   handler: async (ctx, args) => {
-    const email: string | null = await ctx.runQuery(
-      internal.email.ownerEmailInternal,
-      { businessId: args.businessId },
-    );
-    const business: Doc<"businesses"> | null = await ctx.runQuery(
-      internal.businesses.getInternal,
-      { businessId: args.businessId },
-    );
+    const email: string | null = await ctx.runQuery(internal.email.ownerEmailInternal, { businessId: args.businessId });
+    const business: Doc<'businesses'> | null = await ctx.runQuery(internal.businesses.getInternal, { businessId: args.businessId });
     if (!email || !business) return null;
-    const amount = `Rs. ${Math.round(args.amountPaisa / 100).toLocaleString("en-PK")}`;
+    const amount = `Rs. ${Math.round(args.amountPaisa / 100).toLocaleString('en-PK')}`;
     await sendEmail(
       email,
       `Karobari account suspended — unpaid invoice ${args.period}`,
