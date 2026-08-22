@@ -116,6 +116,7 @@ type LedgerRow = {
   commissionPaisa: number;
   completedOrderCount: number;
   status: string;
+  ownerPhone?: string;
 };
 
 function LedgerTable({ entries, onManual, onWaive }: { entries: LedgerRow[]; onManual: (id: string) => void; onWaive: (id: string) => void }) {
@@ -128,6 +129,7 @@ function LedgerTable({ entries, onManual, onWaive }: { entries: LedgerRow[]; onM
         <thead className="border-b border-stone-800 text-xs uppercase text-stone-500">
           <tr>
             <th className="px-4 py-3">Business</th>
+            <th className="px-4 py-3">Contact</th>
             <th className="px-4 py-3">Period</th>
             <th className="px-4 py-3">Orders</th>
             <th className="px-4 py-3">Amount</th>
@@ -142,6 +144,28 @@ function LedgerTable({ entries, onManual, onWaive }: { entries: LedgerRow[]; onM
                 {e.businessName}
                 {e.businessStatus === 'suspended' && <span className="ml-2 text-xs text-red-400">suspended</span>}
               </td>
+              <td className="px-4 py-3 text-xs">
+                {e.ownerPhone ? (
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={`https://wa.me/${e.ownerPhone}?text=${encodeURIComponent(`Assalam o Alaikum! Karobari platform fee for period ${e.period} is ${formatPaisa(e.baseFeePaisa + e.commissionPaisa)}. Kindly send via JazzCash/EasyPaisa.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-md bg-emerald-500/10 px-2 py-1 font-semibold text-emerald-400 hover:bg-emerald-500/20"
+                    >
+                      WhatsApp
+                    </a>
+                    <a
+                      href={`tel:${e.ownerPhone}`}
+                      className="rounded-md bg-stone-800 px-2 py-1 font-semibold text-stone-300 hover:bg-stone-700"
+                    >
+                      Call
+                    </a>
+                  </div>
+                ) : (
+                  <span className="text-stone-600">—</span>
+                )}
+              </td>
               <td className="px-4 py-3 text-stone-400">{e.period}</td>
               <td className="px-4 py-3 text-stone-400">{e.completedOrderCount}</td>
               <td className="px-4 py-3 font-bold">{formatPaisa(e.baseFeePaisa + e.commissionPaisa)}</td>
@@ -152,7 +176,7 @@ function LedgerTable({ entries, onManual, onWaive }: { entries: LedgerRow[]; onM
                 {(e.status === 'due' || e.status === 'proof_submitted') && (
                   <>
                     <button className="rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/25" onClick={() => onManual(e._id)}>
-                      Mark Paid
+                      Mark Paid (JazzCash)
                     </button>
                     <button className="rounded-full bg-stone-500/15 px-3 py-1 text-xs font-semibold text-stone-400 hover:bg-stone-500/25" onClick={() => onWaive(e._id)}>
                       Waive

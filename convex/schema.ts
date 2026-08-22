@@ -160,6 +160,7 @@ export default defineSchema({
     agentState: v.optional(v.any()),
     lastInboundAt: v.number(),
     peerName: v.optional(v.string()),
+    isBotPaused: v.optional(v.boolean()),
   })
     .index('by_channelPhoneNumberId_and_peerPhone', ['channelPhoneNumberId', 'peerPhone'])
     .index('by_businessId', ['businessId']),

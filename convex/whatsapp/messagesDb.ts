@@ -95,6 +95,27 @@ export const setAgentState = internalMutation({
   },
 });
 
+export const setBotPaused = internalMutation({
+  args: { conversationId: v.id('conversations'), isBotPaused: v.boolean() },
+  returns: v.null(),
+  handler: async (ctx, args) => {
+    await ctx.db.patch('conversations', args.conversationId, {
+      isBotPaused: args.isBotPaused,
+    });
+    return null;
+  },
+});
+
+export const getBusinessBySlug = internalQuery({
+  args: { slug: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query('businesses')
+      .withIndex('by_slug', (q) => q.eq('slug', args.slug))
+      .first();
+  },
+});
+
 export const getAccountByPhoneNumberId = internalQuery({
   args: { phoneNumberId: v.string() },
   handler: async (ctx, args) => {
@@ -104,3 +125,4 @@ export const getAccountByPhoneNumberId = internalQuery({
       .unique();
   },
 });
+
