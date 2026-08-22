@@ -208,12 +208,13 @@ export const run = internalAction({
 
         await reply(
           `Mubarak ho! 🎉 "${draft.name}" ab LIVE hai!\n\n` +
-            `🌐 Store: https://${result.slug}.${ROOT_DOMAIN()}\n` +
-            `🛒 Customers ke liye WhatsApp Link: https://wa.me/${args.phoneNumberId}?text=Shop%20${result.slug}\n\n` +
-            'Aap isi WhatsApp number se apna business operate kar sakte hain:\n' +
+            `🌐 Store Website: https://${result.slug}.${ROOT_DOMAIN()}\n` +
+            `📊 Web Dashboard: https://${ROOT_DOMAIN()}/dashboard\n\n` +
+            'Aap is number se apna business operate kar sakte hain:\n' +
             '• "Aaj kitni sales huin?"\n' +
             '• "Active orders dikhao"\n' +
             '• "Status update order #1"\n\n' +
+            'Customers ke liye: Dashboard se apna business WhatsApp number connect karein taake aap ke customers aap ke number par order de sakein. 🤖\n\n' +
             'Pehle 20 orders bilkul FREE hain! 🚀',
         );
 
