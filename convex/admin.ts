@@ -253,6 +253,7 @@ export const ledgerOverview = query({
           ...e,
           businessName: business?.name ?? '(deleted)',
           businessStatus: business?.status ?? 'unknown',
+          ownerPhone: business?.ownerPhone ?? '',
         };
       }),
     );
@@ -269,6 +270,7 @@ export const ledgerOverview = query({
             ...e,
             businessName: business?.name ?? '(deleted)',
             businessStatus: business?.status ?? 'unknown',
+            ownerPhone: business?.ownerPhone ?? '',
           };
         }),
     );

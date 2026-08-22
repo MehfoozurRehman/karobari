@@ -3,7 +3,8 @@ import { internal } from '../_generated/api';
 import { v } from 'convex/values';
 import type { Doc, Id } from '../_generated/dataModel';
 import { normalizePkPhone } from '../lib/phone';
-import { storeInboundMedia } from './media';
+import { storeInboundMedia, transcribeInboundAudio } from './media';
+import { sendText } from './send';
 
 type WaMessage = {
   id: string;
@@ -12,6 +13,8 @@ type WaMessage = {
   text?: { body: string };
   image?: { id: string; mime_type: string; caption?: string };
   document?: { id: string; mime_type: string; caption?: string };
+  audio?: { id: string; mime_type: string; voice?: boolean };
+  voice?: { id: string; mime_type: string };
 };
 
 type WaChange = {
@@ -52,15 +55,20 @@ async function handleMessage(ctx: ActionCtx, phoneNumberId: string, message: WaM
   const peerPhone = normalizePkPhone(peerPhoneRaw) ?? peerPhoneRaw;
   const peerName = value.contacts?.find((c) => c.wa_id === peerPhoneRaw)?.profile?.name;
 
-  const isPlatform = phoneNumberId === process.env.WA_PLATFORM_PHONE_NUMBER_ID;
+  const isPlatform = !process.env.WA_PLATFORM_PHONE_NUMBER_ID || phoneNumberId === process.env.WA_PLATFORM_PHONE_NUMBER_ID;
 
   let accessToken: string;
   let businessId: Id<'businesses'> | null = null;
-  let kind: 'customer' | 'owner' | 'onboarding';
+  let kind: 'customer' | 'owner' | 'onboarding' = 'onboarding';
 
   if (isPlatform) {
     accessToken = process.env.WA_PLATFORM_TOKEN ?? '';
-    kind = 'onboarding';
+    // Check if peer is an existing business owner
+    const existingBusinessByOwner: Doc<'businesses'> | null = await ctx.runQuery(internal.agents.onboardingDb.businessByOwnerPhone, { peerPhone });
+    if (existingBusinessByOwner) {
+      businessId = existingBusinessByOwner._id;
+      kind = 'owner';
+    }
   } else {
     const account: Doc<'whatsappAccounts'> | null = await ctx.runQuery(internal.whatsapp.messagesDb.getAccountByPhoneNumberId, { phoneNumberId });
     if (!account || account.status !== 'connected') return;
@@ -71,22 +79,28 @@ async function handleMessage(ctx: ActionCtx, phoneNumberId: string, message: WaM
     });
     kind = business && business.ownerPhone === peerPhone ? 'owner' : 'customer';
   }
-  if (!accessToken) return;
 
-  const conversationId: Id<'conversations'> = await ctx.runMutation(internal.whatsapp.messagesDb.upsertConversation, {
-    channelPhoneNumberId: phoneNumberId,
-    peerPhone,
-    kind,
-    businessId: businessId ?? undefined,
-    peerName,
-    markInbound: true,
-  });
-
+  // Handle voice notes / audio messages with Whisper transcription
   let text = message.text?.body ?? '';
   let mediaStorageId: Id<'_storage'> | undefined;
   let mediaType: string | undefined;
 
-  if (message.type === 'image' && message.image) {
+  const audioId = message.audio?.id || message.voice?.id;
+  if ((message.type === 'audio' || message.type === 'voice') && audioId) {
+    const stored = await storeInboundMedia(ctx, {
+      mediaId: audioId,
+      accessToken,
+    });
+    mediaStorageId = stored ?? undefined;
+    mediaType = message.audio?.mime_type || message.voice?.mime_type || 'audio/ogg';
+    
+    // Transcribe speech
+    const transcript = await transcribeInboundAudio({
+      mediaId: audioId,
+      accessToken,
+    });
+    text = transcript ?? '[Voice Note - transcription unavailable]';
+  } else if (message.type === 'image' && message.image) {
     const stored = await storeInboundMedia(ctx, {
       mediaId: message.image.id,
       accessToken,
@@ -106,6 +120,28 @@ async function handleMessage(ctx: ActionCtx, phoneNumberId: string, message: WaM
     text = `[unsupported message type: ${message.type}]`;
   }
 
+  // Check for Single-Number Shop Prefix (e.g., "Order from @shinwari", "Shop: biryani-house")
+  if (isPlatform && kind !== 'owner') {
+    const shopPrefixMatch = text.match(/^(?:order from|shop|dukan|store)\s*[:@]?\s*([a-zA-Z0-9-]+)/i);
+    if (shopPrefixMatch) {
+      const slug = shopPrefixMatch[1].toLowerCase();
+      const matchedBusiness = await ctx.runQuery(internal.whatsapp.messagesDb.getBusinessBySlug, { slug });
+      if (matchedBusiness) {
+        businessId = matchedBusiness._id;
+        kind = 'customer';
+      }
+    }
+  }
+
+  const conversationId: Id<'conversations'> = await ctx.runMutation(internal.whatsapp.messagesDb.upsertConversation, {
+    channelPhoneNumberId: phoneNumberId,
+    peerPhone,
+    kind,
+    businessId: businessId ?? undefined,
+    peerName,
+    markInbound: true,
+  });
+
   await ctx.runMutation(internal.whatsapp.messagesDb.insertMessage, {
     conversationId,
     direction: 'in',
@@ -115,6 +151,39 @@ async function handleMessage(ctx: ActionCtx, phoneNumberId: string, message: WaM
     mediaStorageId,
     mediaType,
   });
+
+  const conversation = await ctx.runQuery(internal.whatsapp.messagesDb.getConversation, { conversationId });
+
+  // Human-in-the-loop control commands (/bot or start bot to resume)
+  const trimmed = text.trim().toLowerCase();
+  if (trimmed === '/bot' || trimmed === 'start bot' || trimmed === 'bot on') {
+    await ctx.runMutation(internal.whatsapp.messagesDb.setBotPaused, { conversationId, isBotPaused: false });
+    await sendText(ctx, {
+      phoneNumberId,
+      accessToken,
+      conversationId,
+      to: peerPhone,
+      text: '🤖 Karobari AI Assistant dobara active ho gaya hai.',
+    });
+    return;
+  }
+
+  if (trimmed === '/pause' || trimmed === 'stop bot' || trimmed === 'bot off') {
+    await ctx.runMutation(internal.whatsapp.messagesDb.setBotPaused, { conversationId, isBotPaused: true });
+    await sendText(ctx, {
+      phoneNumberId,
+      accessToken,
+      conversationId,
+      to: peerPhone,
+      text: '⏸️ Karobari AI Assistant pause ho gaya hai. Dobara shuru karne ke liye "/bot" likhein.',
+    });
+    return;
+  }
+
+  // If conversation is paused by human, do not run AI agents
+  if (conversation?.isBotPaused) {
+    return;
+  }
 
   if (kind === 'onboarding') {
     await ctx.runAction(internal.agents.onboardingAgent.run, {
@@ -142,3 +211,4 @@ async function handleMessage(ctx: ActionCtx, phoneNumberId: string, message: WaM
     });
   }
 }
+
