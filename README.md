@@ -58,5 +58,4 @@ Other scripts: `pnpm build`, `pnpm start`, `pnpm lint`. The app runs at `http://
 - `docs/MANUAL_STEPS.md` lists the remaining go-live work. The main item is Meta App Review, which the WhatsApp connection needs before businesses other than app testers can connect.
 - The platform WhatsApp number is documented as Meta's test number, not a production number.
 - There are no automated tests in the repository.
-- The git history has a single commit, so the development history is not available here.
-- The `.env` values for Clerk, Convex, Meta and Vercel are set outside the repo. A new contributor needs the full variable list from Convex and Vercel, not only the six shown above.
+- The Convex, Meta and Vercel settings (for example `META_APP_SECRET` and `CLERK_JWT_ISSUER_DOMAIN`) are set in those services, not in the repo. The local setup above lists only the core variables.
